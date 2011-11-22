@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="test" xmlns:xlink="http://www.w3.org/1999/xlink"  >
+<rect style="stroke:navy; stroke-width:2; fill:none; " rx="12" ry="12" height="200" width="400" y="0" x="0"  />
+<rect style="stroke:navy; stroke-width:2; fill:yellow; " height="100" width="200" y="50" x="100"  />
+<circle cy="500" cx="700" r="50" style="stroke:red; stroke-width:5; fill:none; "  />
+<circle cy="500" cx="810" r="50" style="stroke:yellow; stroke-width:5; fill:#AAAAAA; "  />
+<ellipse cy="50" cx="600" rx="50" ry="30" style="stroke:red; stroke-width:5; fill:none; "  />
+<ellipse cy="50" cx="700" rx="50" ry="30" style="stroke:yellow; stroke-width:5; fill:#00AABB; "  />
+<line y1="0" x2="300" style="stroke:black; stroke-width:2; " x1="0" y2="300"  />
+</svg>

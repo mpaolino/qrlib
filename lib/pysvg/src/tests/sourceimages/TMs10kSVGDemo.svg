@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [
+  <!ATTLIST svg xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+]>
+
+<!-- saved from http://www.datenverdrahten.de/svglbc/svg/TMs10kSVGDemo.svg -->
+<!-- (C) by Dr. Thomas Meinike 2002 | thomas@handmadecode.de | last modified: 22.10.2006 12:13:48 -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="100%" height="100%" viewBox="0 0 950 630" onload="init(evt)">
+
+  <desc>Es werden wichtige Grundelemente von SVG demonstriert.</desc>
+
+  <!--### Definitionen (CSS, JavaScript, SVG) ###-->
+
+  <defs>
+
+    <style type="text/css">
+    <![CDATA[
+
+    text
+    {
+      fill: #000;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #info
+    {
+      fill: #00C;
+      font-size: 15px;
+      font-weight: bold;
+      font-family: "Courier New", Courier, Monospace;
+    }
+
+    .klein
+    {
+      fill: #00C;
+      font-size: 11px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-decoration: none;
+    }
+
+    ]]>
+    </style>
+
+    <script type="text/javascript">
+    <![CDATA[
+
+    var svgdoc,svgroot;
+
+    function init(load_evt)
+    {
+      svgdoc=load_evt.target.ownerDocument;
+      svgroot=svgdoc.documentElement;
+    }
+
+    function TextHover(objid,color,decor)
+    {
+      var element;
+      element=svgdoc.getElementById(objid);
+      element.setAttribute("style","fill: "+color+"; text-decoration: "+decor);
+    }
+
+    function FillHover(objid,fillcol,strokecol,strokew)
+    {
+      var element;
+      element=svgdoc.getElementById(objid);   
+      element.setAttribute("style","fill: "+fillcol+"; stroke: "+strokecol+"; stroke-width: "+strokew);
+    }
+
+    function InfoText(txt,vis)
+    {
+      var element, w;
+      element=svgdoc.getElementById("info");
+      element.childNodes.item(0).data=txt;
+      if(vis=="v")
+      {
+        element.setAttribute("x",(svgroot.getAttribute("viewBox").split(" ")[2]-element.getComputedTextLength())/2);
+        element.setAttribute("style","visibility: visible");
+      }
+      if(vis=="h") element.setAttribute("style","visibility: hidden");
+    }
+
+    ]]>
+    </script>
+
+    <linearGradient id="lingra1">
+      <stop offset="0%" style="stop-color: #000"/>
+      <stop offset="50%" style="stop-color: #00F"/>
+      <stop offset="100%" style="stop-color: #FFF"/>
+    </linearGradient>
+
+    <radialGradient id="radgra1">
+      <stop offset="0%" style="stop-color: #FFF"/>
+      <stop offset="60%" style="stop-color: #FF9"/>
+      <stop offset="100%" style="stop-color: #F00"/>
+    </radialGradient>
+
+    <filter id="filter1">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="out1"/>
+      <feSpecularLighting in="out1" specularExponent="10" surfaceScale="3" result="out2">
+        <fePointLight x="150" y="300" z="300"/>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="out2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
+
+    <pattern id="muster1" patternUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+      <rect x="0" y="0" height="10" width="10" style="fill: #00C"/>
+    </pattern>
+
+  </defs>
+
+  <!--### Hauptrahmen und Textinhalte ###-->
+
+  <rect x="0" y="0" width="946" height="626" style="fill: #FFF; stroke: #00C; stroke-width: 2px"/>
+  <text x="30" y="40" style="fill: #000; font-size: 24px">Objekte und Effekte in <tspan style="fill: #F00" onmouseover="InfoText('&lt;svg width=&quot;...&quot; height=&quot;...&quot;&gt;SVG-Dokument&lt;/svg&gt;','v')" onmouseout="InfoText('','h')">SVG</tspan></text>
+  <text x="360" y="35" style="fill: #000; font-size: 13px">[Der rote Kreis, die Erklärungstexte und die Textlinks sind mit JavaScript-Funktionen verknüpft.]</text>
+  <a xlink:href="mailto:thomas@handmadecode.de"><text id="mail" class="klein" x="5" y="620" onmouseover="TextHover('mail','#F00','underline')" onmouseout="TextHover('mail','#00C','none')">&#169; by Dr. Thomas Meinike 2002</text></a>
+  <text x="830" y="620" class="klein">TMs10kSVGDemo.svg</text>
+
+  <text id="info" x="0" y="620" style="fill: #000; visibility: hidden">Text</text>
+  <text x="230" y="90"  onmouseover="InfoText('&lt;rect x=&quot;...&quot; y=&quot;...&quot; width=&quot;...&quot; height=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Rechteck</text>
+  <text x="230" y="180" onmouseover="InfoText('&lt;circle cx=&quot;...&quot; cy=&quot;...&quot; r=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Kreis</text>
+  <text x="230" y="275" onmouseover="InfoText('&lt;ellipse cx=&quot;...&quot; cy=&quot;...&quot; rx=&quot;...&quot; ry=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Ellipse</text>
+  <text x="100" y="350" onmouseover="InfoText('&lt;polygon points=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Polygon</text>
+  <text x="270" y="350" onmouseover="InfoText('&lt;polyline points=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Polylinie</text>
+  <text x="270" y="470" onmouseover="InfoText('&lt;line x1=&quot;...&quot; y1=&quot;...&quot; x2=&quot;...&quot; y2=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Linie</text>
+  <text x="190" y="570" onmouseover="InfoText('&lt;path d=&quot;...&quot; style=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">Pfad</text>
+  <text x="800" y="550" onmouseover="InfoText('&lt;text x=&quot;...&quot; y=&quot;...&quot; style=&quot;...&quot;&gt;...&lt;/text&gt;','v')" onmouseout="InfoText('','h')">normaler Fließtext</text>
+  <text x="600" y="90"  onmouseover="InfoText('&lt;linearGradient&gt;&lt;stop offset=&quot;...&quot; style=&quot;...&quot;/&gt;&lt;/linearGradient&gt;','v')" onmouseout="InfoText('','h')">linearer Gradient</text>
+  <text x="600" y="170" onmouseover="InfoText('&lt;radialGradient&gt;&lt;stop offset=&quot;...&quot; style=&quot;...&quot;/&gt;&lt;/radialGradient&gt;','v')" onmouseout="InfoText('','h')">radialer Gradient</text>
+  <text x="600" y="310" onmouseover="InfoText('style=&quot;fill-opacity: ...; stroke-opacity: ...&quot;','v')" onmouseout="InfoText('','h')">Opazität (Durchlässigkeit)</text>
+  <text x="600" y="440" onmouseover="InfoText('&lt;filter&gt;&lt;feFiltername ... /&gt;&lt;/filter&gt;','v')" onmouseout="InfoText('','h')">Spezialfilter</text>
+  <text x="800" y="375" onmouseover="InfoText('&lt;objekt ...&gt;&lt;animate ... /&gt;&lt;/objekt&gt;','v')" onmouseout="InfoText('','h')">Animation</text>
+  <text x="600" y="550" onmouseover="InfoText('&lt;pattern&gt;&lt;fuellobjekt ... style=&quot;...&quot;/&gt;&lt;/pattern&gt;','v')" onmouseout="InfoText('','h')">Muster</text>
+  <text x="780" y="190" onmouseover="InfoText('&lt;g transform=&quot;rotate(...)&quot;&gt;&lt;objekt ... /&gt;...&lt;/g&gt;','v')" onmouseout="InfoText('','h')">Gruppe+Transformation</text>
+  <text x="800" y="310" onmouseover="InfoText('&lt;image xlink:href=&quot;...&quot; x=&quot;...&quot; y=&quot;...&quot; width=&quot;...&quot; height=&quot;...&quot;/&gt;','v')" onmouseout="InfoText('','h')">externes Bild</text>
+  <text x="800" y="495" onmouseover="InfoText('&lt;a xlink:href=&quot;...&quot;&gt;&lt;text x=&quot;...&quot; y=&quot;...&quot; style=&quot;...&quot;&gt;...&lt;/text&gt;&lt;/a&gt;','v')" onmouseout="InfoText('','h')">Textlink</text>
+
+  <!--### SVG-Objekte ###-->
+
+  <!-- Rechteck -->
+  <rect x="30" y="70" width="80" height="30" style="fill: #090"/>
+  <rect x="120" y="70" width="80" height="30" style="fill: #FFC; stroke: #00C; stroke-width: 2px"/>
+
+  <!-- Kreis -->
+  <circle id="kreis1" cx="60" cy="170" r="30" style="fill: #F00" onmouseover="FillHover('kreis1','#FF0','#00C','5px')" onmouseout="FillHover('kreis1','#F00','none','0px')"/>
+  <circle cx="150" cy="170" r="30" style="fill: #FF0; stroke: #000; stroke-width: 2px"/>
+
+  <!-- Ellipse -->
+  <ellipse cx="60" cy="270" rx="30" ry="15" style="fill: #F00"/>
+  <ellipse cx="150" cy="270" rx="30" ry="15" style="fill: #CCC; stroke: #000; stroke-width: 2px"/>
+
+  <!-- Polygon -->
+  <polygon points="60,370, 70,360, 80,400, 50,440, 40,330" style="fill: #FFF;  stroke: #000; stroke-width: 2px"/>
+
+  <!-- Linie -->
+  <line x1="60" y1="470" x2="180" y2="470" style="stroke: #00C; stroke-width: 2px"/>
+  <line x1="200" y1="470" x2="260" y2="400" style="stroke: #F00; stroke-width: 2px"/>
+
+  <!-- Polylinie -->
+  <polyline points="250,325 200,345 250,365" style="fill: none; stroke: #090; stroke-width: 2px"/>
+
+  <!-- Pfade -->
+  <path d="M 40,530 L 100,560 L 60,520 Z" style="fill: #EEE; stroke: #00F; stroke-width: 2px"/>
+  <path d="M 190,520 c +0,+0,+30,+30,-60,+30 z" style="fill: #FFC; stroke: #00F; stroke-width: 2px"/>
+  <path d="M 230,530 q -0,+30,+30,+0 q +30,-30,+30,0 q -0,+30,+30,+0 q +30,-20,+30,+0" style="fill: none; stroke: #00F; stroke-width: 2px"/>
+ 
+  <!-- Gradienten -->
+  <rect x="400" y="70" width="180" height="30" style="fill: url(#lingra1)"/>
+  <circle cx="450" cy="170" r="50" style="fill: url(#radgra1)"/>
+
+  <!-- Filter -->
+  <circle cx="450" cy="440" r="50" style="fill: #090; filter: url(#filter1)"/>
+
+  <!-- Muster -->
+  <rect x="400" y="520" width="150" height="50" style="fill: url(#muster1)"/>
+
+  <!-- Opazität -->
+  <circle cx="450" cy="290" r="50" style="fill: #00C; fill-opacity: 0.5"/>
+  <circle cx="475" cy="325" r="50" style="fill: #00C; stroke: #00C; fill-opacity: 0.2; stroke-opacity: 0.3"/>
+
+  <!-- Gruppe und Transformation -->
+  <g transform="rotate(-30)">
+    <rect x="620" y="500" rx="10" ry="10" width="100" height="50" style="fill: none; stroke: #F00; stroke-width: 2px"/>
+    <text x="635" y="537" style="font-size: 36px; fill: none; stroke: #00C; stroke-width: 1px">Text</text>
+  </g>
+
+  <!-- Animation -->
+  <rect x="600" y="360" width="0" height="20" style="fill: #F00; fill-opacity: 0.6">
+    <animate attributeType="XML" attributeName="width" begin="0s" dur="10s" fill="freeze" from="0" to="180"/>
+  </rect>
+
+  <!-- externes Bild -->
+  <image x="800" y="250" xlink:href="http://l.yimg.com/eur.yimg.com/i/de/hp/yahoo1.png" width="88" height="31"/> 
+
+  <!-- Textlink -->
+  <a xlink:href="http://www.datenverdrahten.de" target="_top"><text id="textlink" x="600" y="495" style="fill: #F00" onmouseover="TextHover('textlink','#00C','underline')" onmouseout="TextHover('textlink','#F00','none')">http://www.datenverdrahten.de</text></a>
+
+</svg>

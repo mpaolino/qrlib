@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"  >
+<defs  >
+<rect style="stroke:black; stroke-width:1; fill:000; " height="200" width="100" y="0" x="0" id="baseRect"  />
+</defs>
+<use y="1" x="1" xlink:href="#baseRect"  />
+<use y="200" x="200" xlink:href="#baseRect"  />
+</svg>

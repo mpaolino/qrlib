@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>turtle &mdash; pySVG v0.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pySVG v0.2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li><a href="../index.html">pySVG v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="turtle">
+<h1>turtle<a class="headerlink" href="#turtle" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-pysvg.turtle">
+<h2>Module: <tt class="xref docutils literal"><span class="pre">turtle</span></tt><a class="headerlink" href="#module-pysvg.turtle" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <tt class="docutils literal"><span class="pre">pysvg.turtle</span></tt>:</p>
+<p>(C) 2008, 2009, 2010 Kerim Mansour
+For licensing information please refer to license.txt</p>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><a title="pysvg.turtle.Turtle" class="reference internal" href="#pysvg.turtle.Turtle"><tt class="xref docutils literal"><span class="pre">Turtle</span></tt></a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pysvg.turtle.Turtle">
+<em class="property">class </em><tt class="descclassname">pysvg.turtle.</tt><tt class="descname">Turtle</tt><big>(</big><em>initialPosition=0.00</em>, <em>0.00</em>, <em>initialOrientation=1.00</em>, <em>0.00</em>, <em>fill='white'</em>, <em>stroke='black'</em>, <em>strokeWidth='1'</em>, <em>penDown=False</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<p>Class representing a classical turtle object known from logo and other implementations.
+Note that currently each turtle has exactly ONE style of drawing, so if you intend to draw in multiple styles several instances of turtles are needed.
+A turtle will only actually draw when the pen is down (default=false).
+An xml representation usable for pysvg can ge retrieved using the getXML()-method.
+To add the turtles paths to an svg you have two opions:
+Either you simply call &#8220;addTurtlePathToSVG&#8221; or you can create an svg element and append the Elements of the turtle using a loop, e.g:
+s=svg(...)
+t=Turtle(...)
+for element in t.getSVGElements():</p>
+<blockquote>
+s.addElement(element)</blockquote>
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>initialPosition=0.00</em>, <em>0.00</em>, <em>initialOrientation=1.00</em>, <em>0.00</em>, <em>fill='white'</em>, <em>stroke='black'</em>, <em>strokeWidth='1'</em>, <em>penDown=False</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.__init__" title="Permalink to this definition">¶</a></dt>
+<dd>Initializes a new Turtle with a new initial position and orientation as well as defaultvalues for style.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.addTurtlePathToSVG">
+<tt class="descname">addTurtlePathToSVG</tt><big>(</big><em>svgContainer</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.addTurtlePathToSVG" title="Permalink to this definition">¶</a></dt>
+<dd>Adds the paths of the turtle to an existing svg container.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.backward">
+<tt class="descname">backward</tt><big>(</big><em>distance</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.backward" title="Permalink to this definition">¶</a></dt>
+<dd>Moves the turtle backwards by distance in the direction it is facing. 
+If the pen is lowered it will also add to the currently drawn polyline.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.finish">
+<tt class="descname">finish</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.finish" title="Permalink to this definition">¶</a></dt>
+<dd>MUST be called when drawing is finished. Else the last path will not be added to the stack.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.forward">
+<tt class="descname">forward</tt><big>(</big><em>distance</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.forward" title="Permalink to this definition">¶</a></dt>
+<dd>Moves the turtle forwards by distance in the direction it is facing. 
+If the pen is lowered it will also add to the currently drawn polyline.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.getOrientation">
+<tt class="descname">getOrientation</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.getOrientation" title="Permalink to this definition">¶</a></dt>
+<dd>Retrieve current orientation of the turtle.(Vector)</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.getPosition">
+<tt class="descname">getPosition</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.getPosition" title="Permalink to this definition">¶</a></dt>
+<dd>Retrieve current position of the turtle.(Vector)</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.getSVGElements">
+<tt class="descname">getSVGElements</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.getSVGElements" title="Permalink to this definition">¶</a></dt>
+<dd>Retrieves the pysvg elements that make up the turtles path and returns them as list.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.getXML">
+<tt class="descname">getXML</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.getXML" title="Permalink to this definition">¶</a></dt>
+<dd>Retrieves the pysvg elements that make up the turtles path and returns them as String in an xml representation.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.isPenDown">
+<tt class="descname">isPenDown</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.isPenDown" title="Permalink to this definition">¶</a></dt>
+<dd>Retrieve current status of the pen.(boolean)</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.left">
+<tt class="descname">left</tt><big>(</big><em>angle</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.left" title="Permalink to this definition">¶</a></dt>
+<dd>Rotates the turtle to the left by angle.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.moveTo">
+<tt class="descname">moveTo</tt><big>(</big><em>vector</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.moveTo" title="Permalink to this definition">¶</a></dt>
+<dd>Moves the turtle to the new position. Orientation is kept as it is. 
+If the pen is lowered it will also add to the currently drawn polyline.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.penDown">
+<tt class="descname">penDown</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.penDown" title="Permalink to this definition">¶</a></dt>
+<dd>Lowers the pen down again. A new polyline will be created for drawing.
+Old polylines will be stored in the stack</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.penUp">
+<tt class="descname">penUp</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.penUp" title="Permalink to this definition">¶</a></dt>
+<dd>Raises the pen. Any movement will not draw lines till pen is lowered again.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.right">
+<tt class="descname">right</tt><big>(</big><em>angle</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.right" title="Permalink to this definition">¶</a></dt>
+<dd>Rotates the turtle to the right by angle.</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Turtle.setOrientation">
+<tt class="descname">setOrientation</tt><big>(</big><em>vec</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Turtle.setOrientation" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the orientation of the turtle.(Vector)</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="vector">
+<h3><a title="pysvg.turtle.Vector" class="reference internal" href="#pysvg.turtle.Vector"><tt class="xref docutils literal"><span class="pre">Vector</span></tt></a><a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pysvg.turtle.Vector">
+<em class="property">class </em><tt class="descclassname">pysvg.turtle.</tt><tt class="descname">Vector</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref docutils literal"><span class="pre">object</span></tt></p>
+<p>Class representing a vector. Used to determine position of the turtle as well as heading.
+Also used to calculate movement.
+Vector class is inspired by tips and code from:
+- <a class="reference external" href="http://slowchop.com/2006/07/15/a-fast-python-vector-class/">http://slowchop.com/2006/07/15/a-fast-python-vector-class/</a>
+- <a class="reference external" href="http://www.kokkugia.com/wiki/index.php5?title=Python_vector_class">http://www.kokkugia.com/wiki/index.php5?title=Python_vector_class</a>
+- <a class="reference external" href="http://xturtle.rg16.at/code/xturtle.py">http://xturtle.rg16.at/code/xturtle.py</a></p>
+<dl class="method">
+<dt id="pysvg.turtle.Vector.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Vector.__init__" title="Permalink to this definition">¶</a></dt>
+<dd>Initializes the vector. 
+x and y are coordinates and should be numbers. 
+They will be cast to floats</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.turtle.Vector.rotate">
+<tt class="descname">rotate</tt><big>(</big><em>angle</em><big>)</big><a class="headerlink" href="#pysvg.turtle.Vector.rotate" title="Permalink to this definition">¶</a></dt>
+<dd>Rotates self counterclockwise by angle 
+(the angle must be given in a 360 degree system)</dd></dl>
+
+<dl class="attribute">
+<dt id="pysvg.turtle.Vector.x">
+<tt class="descname">x</tt><a class="headerlink" href="#pysvg.turtle.Vector.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pysvg.turtle.Vector.y">
+<tt class="descname">y</tt><a class="headerlink" href="#pysvg.turtle.Vector.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">turtle</a><ul>
+<li><a class="reference external" href="#module-pysvg.turtle">Module: <tt class="docutils literal"><span class="pre">turtle</span></tt></a></li>
+<li><a class="reference external" href="#classes">Classes</a><ul>
+<li><a class="reference external" href="#id1"><tt class="docutils literal"><span class="pre">Turtle</span></tt></a></li>
+<li><a class="reference external" href="#vector"><tt class="docutils literal"><span class="pre">Vector</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/generated/pysvg.turtle.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">pySVG v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Kerim Mansour.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

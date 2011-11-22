@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 950 630"  >
+<defs  >
+<pattern id="muster1" height="20" width="20" patternUnits="userSpaceOnUse" y="0" x="0"  >
+<rect style="fill: #00C" height="10" width="10" y="0" x="0"  />
+</pattern>
+</defs>
+<rect style="stroke:#00C; stroke-width:2px; fill:#FFF; " height="626" width="946" y="0" x="0"  />
+<text style="font-size:24px; fill:#000; " y="40" x="30"  >
+Objects and Effects in ...</text>
+<text style="font-size:13px; " y="35" x="360"  >
+[The red circle, explanation texts and textlinks WILL (but are not yet) connected to JavaScript.]</text>
+<text y="90" x="230"  >
+Rectangle</text>
+<text y="180" x="230"  >
+Circle</text>
+<text y="275" x="230"  >
+Ellipse</text>
+<text y="350" x="100"  >
+Polygon</text>
+<text y="350" x="270"  >
+Polyline</text>
+<text y="470" x="270"  >
+Line</text>
+<text y="570" x="190"  >
+Path</text>
+<text y="550" x="800"  >
+flowing Text</text>
+<text y="90" x="600"  >
+linear gradient</text>
+<text y="170" x="600"  >
+radial gradient</text>
+<text y="310" x="600"  >
+opacity</text>
+<text y="440" x="600"  >
+filter</text>
+<text y="375" x="800"  >
+animation</text>
+<text y="550" x="600"  >
+pattern</text>
+<text y="190" x="780"  >
+group + transformation</text>
+<text y="310" x="800"  >
+external Picture</text>
+<text y="495" x="800"  >
+Textlink</text>
+<rect style="stroke:black; stroke-width:0; fill:#090; " height="30" width="80" y="70" x="30"  />
+<rect style="stroke:#00C; stroke-width:2px; fill:#FFC; " height="30" width="80" y="70" x="120"  />
+<circle cy="170" cx="60" r="30" style="stroke:black; stroke-width:0; fill:#F00; "  />
+<circle cy="170" cx="150" r="30" style="stroke:#000; stroke-width:2px; fill:#FF0; "  />
+<ellipse cy="270" cx="60" rx="30" ry="15" style="stroke:black; stroke-width:0; fill:#F00; "  />
+<ellipse cy="270" cx="150" rx="30" ry="15" style="stroke:#000; stroke-width:2px; fill:#CCC; "  />
+<polygon style="stroke:#000; stroke-width:2px; fill:#FFF; " points="60,370, 70,360, 80,400, 50,440, 40,330"  />
+<line y1="470" x2="180" style="stroke:#00C; stroke-width:2px; " x1="60" y2="470"  />
+<line y1="470" x2="260" style="stroke:#F00; stroke-width:2px; " x1="200" y2="400"  />
+<path style="stroke:#00F; stroke-width:2px; fill:#EEE; " d="M 40,530 L 100,560 L 60,520 Z "  />
+<path style="stroke:#00F; stroke-width:2px; fill:#FFC; " d="M 190  520 c +0  +0  30  30  -60  30 z"  />
+<path style="stroke:#00F; stroke-width:2px; fill:none; " d="M 230,530 q 0  30  30  0 q 30  -30  30  0 q 0  30  30  0 q 30  -20  30  0 "  />
+<polyline style="stroke:#090; stroke-width:2px; fill:none; " points="250,325 200,345 250,365"  />
+<circle cy="290" cx="450" r="50" style="fill-opacity:0.5; fill:#00C; "  />
+<circle cy="325" cx="475" r="50" style="stroke:#00C; fill-opacity:0.2; stroke-opacity:0.3; fill:#00C; "  />
+<g transform="rotate(-30) "  >
+<rect style="stroke:#F00; stroke-width:2px; fill:none; " rx="10" ry="10" height="50" width="100" y="500" x="620"  />
+<text style="font-size:36px; stroke-width:1px; stroke:#00C; fill:none; " y="537" x="635"  >
+Text</text>
+</g>
+<image xlink:href="http://www.google.de/intl/de_de/images/logo.gif" height="31" width="88" y="250" x="800"  />
+<a xlink:href="http://codeboje.de/pysvg" target="_top"  >
+<text style="fill: #F00" y="495" x="600"  >
+http://codeboje.de/pysvg</text>
+</a>
+<rect style="fill: url(#muster1)" height="50" width="150" y="520" x="400"  />
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 950 630"  >
+<rect style="stroke:#00C; stroke-width:2px; fill:#FFF; " height="626" width="946" y="0" x="0"  />
+<text y="380" x="320"  >
+skewX(-40)</text>
+<text y="210" x="600"  >
+scaling(1.0 0.5)</text>
+<text y="480" x="50"  >
+matrix (0.866,0.5,-0.5,0.866,-300,-200)</text>
+<g transform="skewX(-40.0) "  >
+<rect style="stroke:#F00; stroke-width:2px; fill:none; " rx="10" ry="10" height="50" width="100" y="300" x="620"  />
+<text style="font-size:36px; stroke-width:1px; stroke:#00C; fill:none; " y="337" x="635"  >
+Text</text>
+</g>
+<g transform="scale(1.0 0.5) "  >
+<rect style="stroke:#F00; stroke-width:2px; fill:none; " rx="10" ry="10" height="50" width="100" y="300" x="620"  />
+<text style="font-size:36px; stroke-width:1px; stroke:#00C; fill:none; " y="337" x="635"  >
+Text</text>
+</g>
+<g transform="matrix(0.866 0.5 -0.5 0.866 -300.0 -200.0) "  >
+<rect style="stroke:#F00; stroke-width:2px; fill:none; " rx="10" ry="10" height="50" width="100" y="300" x="620"  />
+<text style="font-size:36px; stroke-width:1px; stroke:#00C; fill:none; " y="337" x="635"  >
+Text</text>
+</g>
+</svg>

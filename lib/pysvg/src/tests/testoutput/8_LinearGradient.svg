@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="test" xmlns:xlink="http://www.w3.org/1999/xlink"  >
+<defs  >
+<linearGradient id="orange_red"  >
+<stop stop-color="rgb(255,255,0)" stop-opacity="1" offset="0%"  />
+<stop stop-color="rgb(255,0,0)" stop-opacity="1" offset="100%"  />
+</linearGradient>
+</defs>
+<ellipse cy="190" cx="200" rx="85" ry="55" style="stroke:black; stroke-width:1; fill:url(#orange_red); "  />
+</svg>

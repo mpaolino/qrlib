@@ -1,0 +1,17 @@
+Licensing Information for pySVG
+
+pySVG uses a dual licensing model that offers you a choice of either an open source license or a commercial license.
+The open source license permits use of pySVG in open source projects or in applications that are not commercially used (see definition below).
+The commercial license permits closed-source distribution of an application based on (the original or a customized version) pySVG.
+
+What does "commercially used" mean?
+The term "commerially used" refers to 
+a) any redistribution for which you demand money 
+b) any usage of pySVG in a program for which you demand money
+c) any usage of pySVG in a company
+
+OPEN SOURCE LICENSE:
+pySVG uses GPL v3.0 and later
+
+COMMERCIAL LICENSE:
+Please contact me at kmansour AT web DOT de

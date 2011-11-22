@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" height="370px" width="380px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"  >
+<defs  >
+<symbol id="smilie"  >
+<circle cy="20" cx="20" r="15" style="stroke:black; stroke-width:1; fill:yellow; " id="gesicht"  />
+<circle cy="15" cx="15" r="2" style="stroke:black; stroke-width:1; fill:black; " id="auge-links"  />
+<circle cy="15" cx="25" r="2" style="stroke:black; stroke-width:1; fill:black; " id="auge-rechts"  />
+<line style="stroke:black; stroke-width:2; " y2="23" x2="20" y1="18" x1="20" id="nase"  />
+<path stroke="black" stroke-width="2" fill="none" d="M 13 26 A 5 3 0 0 0 27 26 " id="mund"  />
+</symbol>
+<filter height="1.9" width="1.9" y="-.5" x="-.3" id="Filter6"  >
+<feGaussianBlur result="out1" in="SourceAlpha" stdDeviation="4"  />
+<feOffset dy="-4" result="out2" dx="4" in="out1"  />
+<feMerge  >
+<feMergeNode in="out2"  />
+<feMergeNode in="SourceGraphic"  />
+</feMerge>
+</filter>
+</defs>
+<use filter="url(#Filter6)" xlink:href="#smilie" transform="translate(250,250) scale(2.7)"  />
+</svg>

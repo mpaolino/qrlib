@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>builders &mdash; pySVG v0.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pySVG v0.2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li><a href="../index.html">pySVG v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="builders">
+<h1>builders<a class="headerlink" href="#builders" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-pysvg.builders">
+<h2>Module: <tt class="xref docutils literal"><span class="pre">builders</span></tt><a class="headerlink" href="#module-pysvg.builders" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance diagram for <tt class="docutils literal"><span class="pre">pysvg.builders</span></tt>:</p>
+<p>(C) 2008, 2009 Kerim Mansour
+For licensing information please refer to license.txt</p>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shapebuilder">
+<h3><a title="pysvg.builders.ShapeBuilder" class="reference internal" href="#pysvg.builders.ShapeBuilder"><tt class="xref docutils literal"><span class="pre">ShapeBuilder</span></tt></a><a class="headerlink" href="#shapebuilder" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pysvg.builders.ShapeBuilder">
+<em class="property">class </em><tt class="descclassname">pysvg.builders.</tt><tt class="descname">ShapeBuilder</tt><a class="headerlink" href="#pysvg.builders.ShapeBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper class that creates commonly used objects and shapes with predefined styles and
+few but often used parameters. Used to avoid more complex coding for common tasks.</p>
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.convertTupleArrayToPoints">
+<tt class="descname">convertTupleArrayToPoints</tt><big>(</big><em>arrayOfPointTuples</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.convertTupleArrayToPoints" title="Permalink to this definition">¶</a></dt>
+<dd>Method used to convert an array of tuples (x,y) into a string
+suitable for createPolygon or createPolyline
+&#64;type  arrayOfPointTuples: An array containing tuples eg.[(x1,y1),(x2,y2]
+&#64;param arrayOfPointTuples:  All points needed to create the shape
+&#64;return a string in the form &#8220;x1,y1 x2,y2 x3,y3&#8221;</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createCircle">
+<tt class="descname">createCircle</tt><big>(</big><em>cx</em>, <em>cy</em>, <em>r</em>, <em>strokewidth=1</em>, <em>stroke='black'</em>, <em>fill='none'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createCircle" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a circle
+&#64;type  cx: string or int
+&#64;param cx:  starting x-coordinate  
+&#64;type  cy: string or int
+&#64;param cy:  starting y-coordinate 
+&#64;type  r: string or int
+&#64;param r:  radius 
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;type  fill: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param fill:  color with which to fill the element (default: no filling)
+&#64;return:  a circle object</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createEllipse">
+<tt class="descname">createEllipse</tt><big>(</big><em>cx</em>, <em>cy</em>, <em>rx</em>, <em>ry</em>, <em>strokewidth=1</em>, <em>stroke='black'</em>, <em>fill='none'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createEllipse" title="Permalink to this definition">¶</a></dt>
+<dd>Creates an ellipse
+&#64;type  cx: string or int
+&#64;param cx:  starting x-coordinate  
+&#64;type  cy: string or int
+&#64;param cy:  starting y-coordinate 
+&#64;type  rx: string or int
+&#64;param rx:  radius in x direction 
+&#64;type  ry: string or int
+&#64;param ry:  radius in y direction
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;type  fill: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param fill:  color with which to fill the element (default: no filling)
+&#64;return:  an ellipse object</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createLine">
+<tt class="descname">createLine</tt><big>(</big><em>x1</em>, <em>y1</em>, <em>x2</em>, <em>y2</em>, <em>strokewidth=1</em>, <em>stroke='black'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createLine" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a line
+&#64;type  x1: string or int
+&#64;param x1:  starting x-coordinate
+&#64;type  y1: string or int
+&#64;param y1:  starting y-coordinate
+&#64;type  x2: string or int
+&#64;param x2:  ending x-coordinate
+&#64;type  y2: string or int
+&#64;param y2:  ending y-coordinate
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;return:  a line object</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createPolygon">
+<tt class="descname">createPolygon</tt><big>(</big><em>points</em>, <em>strokewidth=1</em>, <em>stroke='black'</em>, <em>fill='none'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createPolygon" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a Polygon
+&#64;type  points: string in the form &#8220;x1,y1 x2,y2 x3,y3&#8221;
+&#64;param points:  all points relevant to the polygon
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;type  fill: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param fill:  color with which to fill the element (default: no filling)
+&#64;return:  a polygon object</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createPolyline">
+<tt class="descname">createPolyline</tt><big>(</big><em>points</em>, <em>strokewidth=1</em>, <em>stroke='black'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createPolyline" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a Polyline
+&#64;type  points: string in the form &#8220;x1,y1 x2,y2 x3,y3&#8221;
+&#64;param points:  all points relevant to the polygon
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;return:  a polyline object</dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.ShapeBuilder.createRect">
+<tt class="descname">createRect</tt><big>(</big><em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>rx=None</em>, <em>ry=None</em>, <em>strokewidth=1</em>, <em>stroke='black'</em>, <em>fill='none'</em><big>)</big><a class="headerlink" href="#pysvg.builders.ShapeBuilder.createRect" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a Rectangle
+&#64;type  x: string or int
+&#64;param x:  starting x-coordinate  
+&#64;type  y: string or int
+&#64;param y:  starting y-coordinate 
+&#64;type  width: string or int
+&#64;param width:  width of the rectangle  
+&#64;type  height: string or int
+&#64;param height:  height of the rectangle 
+&#64;type  rx: string or int
+&#64;param rx:  For rounded rectangles, the x-axis radius of the ellipse used to round off the corners of the rectangle. 
+&#64;type  ry: string or int
+&#64;param ry:  For rounded rectangles, the y-axis radius of the ellipse used to round off the corners of the rectangle.
+&#64;type  strokewidth: string or int
+&#64;param strokewidth:  width of the pen used to draw
+&#64;type  stroke: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param stroke:  color with which to draw the outer limits
+&#64;type  fill: string (either css constants like &#8220;black&#8221; or numerical values like &#8220;#FFFFFF&#8221;)
+&#64;param fill:  color with which to fill the element (default: no filling)
+&#64;return:  a rect object</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="stylebuilder">
+<h3><a title="pysvg.builders.StyleBuilder" class="reference internal" href="#pysvg.builders.StyleBuilder"><tt class="xref docutils literal"><span class="pre">StyleBuilder</span></tt></a><a class="headerlink" href="#stylebuilder" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pysvg.builders.StyleBuilder">
+<em class="property">class </em><tt class="descclassname">pysvg.builders.</tt><tt class="descname">StyleBuilder</tt><big>(</big><em>aStyle_dict=None</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to create a style string for those not familiar with svg attribute names.
+How to use it:
+1) create an instance of StyleBuilder (builder=....)
+2) set the attributes you want to have
+3) create the shape (element) you want
+4) call set_style on the element with &#8220;builder.getStyle()&#8221; as parameter</p>
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>aStyle_dict=None</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.getStyle">
+<tt class="descname">getStyle</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.getStyle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setColorRendering">
+<tt class="descname">setColorRendering</tt><big>(</big><em>colorrendering</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setColorRendering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setCurrentColor">
+<tt class="descname">setCurrentColor</tt><big>(</big><em>color</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setCurrentColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setDisplayAlign">
+<tt class="descname">setDisplayAlign</tt><big>(</big><em>displayalign</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setDisplayAlign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFillOpacity">
+<tt class="descname">setFillOpacity</tt><big>(</big><em>fillopacity</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFillOpacity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFillRule">
+<tt class="descname">setFillRule</tt><big>(</big><em>fillrule</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFillRule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFilling">
+<tt class="descname">setFilling</tt><big>(</big><em>fill</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFilling" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFontFamily">
+<tt class="descname">setFontFamily</tt><big>(</big><em>fontfamily</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFontFamily" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFontSize">
+<tt class="descname">setFontSize</tt><big>(</big><em>fontsize</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFontSize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFontStyle">
+<tt class="descname">setFontStyle</tt><big>(</big><em>fontstyle</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFontStyle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setFontWeight">
+<tt class="descname">setFontWeight</tt><big>(</big><em>fontweight</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setFontWeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setImageRendering">
+<tt class="descname">setImageRendering</tt><big>(</big><em>imagerendering</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setImageRendering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setLineIncrement">
+<tt class="descname">setLineIncrement</tt><big>(</big><em>lineincrement</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setLineIncrement" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setShapeRendering">
+<tt class="descname">setShapeRendering</tt><big>(</big><em>shaperendering</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setShapeRendering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setSolidColor">
+<tt class="descname">setSolidColor</tt><big>(</big><em>solidcolor</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setSolidColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setSolidOpacity">
+<tt class="descname">setSolidOpacity</tt><big>(</big><em>solidopacity</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setSolidOpacity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStopColor">
+<tt class="descname">setStopColor</tt><big>(</big><em>stopcolor</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStopColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStopOpacity">
+<tt class="descname">setStopOpacity</tt><big>(</big><em>stopopacity</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStopOpacity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStroke">
+<tt class="descname">setStroke</tt><big>(</big><em>stroke</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStroke" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeDashArray">
+<tt class="descname">setStrokeDashArray</tt><big>(</big><em>strokedasharray</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeDashArray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeDashOffset">
+<tt class="descname">setStrokeDashOffset</tt><big>(</big><em>strokedashoffset</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeDashOffset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeLineCap">
+<tt class="descname">setStrokeLineCap</tt><big>(</big><em>strikelinecap</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeLineCap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeLineJoin">
+<tt class="descname">setStrokeLineJoin</tt><big>(</big><em>strokelinejoin</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeLineJoin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeMiterLimit">
+<tt class="descname">setStrokeMiterLimit</tt><big>(</big><em>strokemiterlimit</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeMiterLimit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeOpacity">
+<tt class="descname">setStrokeOpacity</tt><big>(</big><em>strokeopacity</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeOpacity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setStrokeWidth">
+<tt class="descname">setStrokeWidth</tt><big>(</big><em>strokewidth</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setStrokeWidth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setTextAnchor">
+<tt class="descname">setTextAnchor</tt><big>(</big><em>textanchor</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setTextAnchor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setTextRendering">
+<tt class="descname">setTextRendering</tt><big>(</big><em>textrendering</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setTextRendering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setVectorEffect">
+<tt class="descname">setVectorEffect</tt><big>(</big><em>vectoreffect</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setVectorEffect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setViewPortFill">
+<tt class="descname">setViewPortFill</tt><big>(</big><em>viewportfill</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setViewPortFill" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.StyleBuilder.setViewPortOpacity">
+<tt class="descname">setViewPortOpacity</tt><big>(</big><em>viewportfillopacity</em><big>)</big><a class="headerlink" href="#pysvg.builders.StyleBuilder.setViewPortOpacity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="transformbuilder">
+<h3><a title="pysvg.builders.TransformBuilder" class="reference internal" href="#pysvg.builders.TransformBuilder"><tt class="xref docutils literal"><span class="pre">TransformBuilder</span></tt></a><a class="headerlink" href="#transformbuilder" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="pysvg.builders.TransformBuilder">
+<em class="property">class </em><tt class="descclassname">pysvg.builders.</tt><tt class="descname">TransformBuilder</tt><a class="headerlink" href="#pysvg.builders.TransformBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to create a transform string for those not familiar with svg attribute names.
+How to use it:
+1) create an instance of TransformBuilder (builder=....)
+2) set the attributes you want to have
+3) create the shape (element) you want
+4) call set_transform on the element with &#8220;builder.getTransform()&#8221; as parameter</p>
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.getTransform">
+<tt class="descname">getTransform</tt><big>(</big><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.getTransform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setMatrix">
+<tt class="descname">setMatrix</tt><big>(</big><em>a</em>, <em>b</em>, <em>c</em>, <em>d</em>, <em>e</em>, <em>f</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setMatrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setRotation">
+<tt class="descname">setRotation</tt><big>(</big><em>rotate</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setRotation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setScaling">
+<tt class="descname">setScaling</tt><big>(</big><em>x=None</em>, <em>y=None</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setScaling" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setSkewX">
+<tt class="descname">setSkewX</tt><big>(</big><em>skewX</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setSkewX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setSkewY">
+<tt class="descname">setSkewY</tt><big>(</big><em>skewY</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setSkewY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pysvg.builders.TransformBuilder.setTranslation">
+<tt class="descname">setTranslation</tt><big>(</big><em>translate</em><big>)</big><a class="headerlink" href="#pysvg.builders.TransformBuilder.setTranslation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">builders</a><ul>
+<li><a class="reference external" href="#module-pysvg.builders">Module: <tt class="docutils literal"><span class="pre">builders</span></tt></a></li>
+<li><a class="reference external" href="#classes">Classes</a><ul>
+<li><a class="reference external" href="#shapebuilder"><tt class="docutils literal"><span class="pre">ShapeBuilder</span></tt></a></li>
+<li><a class="reference external" href="#stylebuilder"><tt class="docutils literal"><span class="pre">StyleBuilder</span></tt></a></li>
+<li><a class="reference external" href="#transformbuilder"><tt class="docutils literal"><span class="pre">TransformBuilder</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/generated/pysvg.builders.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">pySVG v0.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Kerim Mansour.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

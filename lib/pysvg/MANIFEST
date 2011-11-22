@@ -1,0 +1,16 @@
+setup.py
+src\pysvg\__init__.py
+src\pysvg\animate.py
+src\pysvg\attributes.py
+src\pysvg\builders.py
+src\pysvg\core.py
+src\pysvg\filter.py
+src\pysvg\gradient.py
+src\pysvg\linking.py
+src\pysvg\parser.py
+src\pysvg\script.py
+src\pysvg\shape.py
+src\pysvg\structure.py
+src\pysvg\style.py
+src\pysvg\text.py
+src\pysvg\util.py
