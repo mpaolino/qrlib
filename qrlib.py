@@ -1,4 +1,5 @@
 # coding: utf-8
+# (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
 from os.path import abspath, dirname
 import sys
 
@@ -11,13 +12,16 @@ if lib not in sys.path:
 
 from config import *
 from lib.pyqrcode import (MakeQRImage, QRErrorCorrectLevel)
-#from lib.potrace import Bitmap
+from lib.potrace import Bitmap
 
 from PIL import (Image, ImageDraw, ImageFont)
 import numpy
 
 
-def get_qr_pil(text, ec_level='M', block_pixels=10, border_blocks=4):
+def _get_qr_pil(text, ec_level='M', block_pixels=10, border_blocks=4):
+    """
+        Returns a customized PIL image with an encoded QR
+    """
     if ec_level == 'L':
         error_correction = QRErrorCorrectLevel.L
     if ec_level == 'M':
@@ -36,113 +40,131 @@ def get_qr_pil(text, ec_level='M', block_pixels=10, border_blocks=4):
 
 
 def interior_small_qr_pil(text, language='es'):
-    """Get's a small QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=INTERIOR_SMALL['error_correction'],
-                               block_pixels=INTERIOR_SMALL['block_pixels'],
-                               border_blocks=INTERIOR_SMALL['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=INTERIOR_SMALL['block_pixels']\
+    """Get's a small QR for interior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=INTERIOR_SMALL['error_correction'],
+                                block_pixels=INTERIOR_SMALL['block_pixels'],
+                                border_blocks=INTERIOR_SMALL['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=INTERIOR_SMALL['block_pixels']\
                                * INTERIOR_SMALL['border_blocks'])
 
 
 def interior_medium_qr_pil(text, language='es'):
-    """Get's a medium QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=INTERIOR_MEDIUM['error_correction'],
-                               block_pixels=INTERIOR_MEDIUM['block_pixels'],
-                               border_blocks=INTERIOR_MEDIUM['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=INTERIOR_MEDIUM['block_pixels']\
+    """Get's a medium QR for interior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=INTERIOR_MEDIUM['error_correction'],
+                                block_pixels=INTERIOR_MEDIUM['block_pixels'],
+                                border_blocks=INTERIOR_MEDIUM['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=INTERIOR_MEDIUM['block_pixels']\
                                * INTERIOR_MEDIUM['border_blocks'])
 
 
 def interior_large_qr_pil(text, language='es'):
-    """Get's a large QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=INTERIOR_LARGE['error_correction'],
-                               block_pixels=INTERIOR_LARGE['block_pixels'],
-                               border_blocks=INTERIOR_LARGE['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=INTERIOR_LARGE['block_pixels']\
+    """Get's a large QR for interior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=INTERIOR_LARGE['error_correction'],
+                                block_pixels=INTERIOR_LARGE['block_pixels'],
+                                border_blocks=INTERIOR_LARGE['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=INTERIOR_LARGE['block_pixels']\
                                * INTERIOR_LARGE['border_blocks'])
 
 
 def exterior_small_qr_pil(text, language='es'):
-    """Get's a small QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=EXTERIOR_SMALL['error_correction'],
-                               block_pixels=EXTERIOR_SMALL['block_pixels'],
-                               border_blocks=EXTERIOR_SMALL['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=EXTERIOR_SMALL['block_pixels']\
+    """Get's a small QR for exterior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=EXTERIOR_SMALL['error_correction'],
+                                block_pixels=EXTERIOR_SMALL['block_pixels'],
+                                border_blocks=EXTERIOR_SMALL['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=EXTERIOR_SMALL['block_pixels']\
                                * EXTERIOR_SMALL['border_blocks'])
 
 
 def exterior_medium_qr_pil(text, language='es'):
-    """Get's a medium QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=EXTERIOR_MEDIUM['error_correction'],
-                               block_pixels=EXTERIOR_MEDIUM['block_pixels'],
-                               border_blocks=EXTERIOR_MEDIUM['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=EXTERIOR_MEDIUM['block_pixels']\
+    """Get's a medium QR for exterior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=EXTERIOR_MEDIUM['error_correction'],
+                                block_pixels=EXTERIOR_MEDIUM['block_pixels'],
+                                border_blocks=EXTERIOR_MEDIUM['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=EXTERIOR_MEDIUM['block_pixels']\
                                * EXTERIOR_MEDIUM['border_blocks'])
 
 
 def exterior_large_qr_pil(text, language='es'):
-    """Get's a large QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=EXTERIOR_LARGE['error_correction'],
-                               block_pixels=EXTERIOR_LARGE['block_pixels'],
-                               border_blocks=EXTERIOR_LARGE['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=EXTERIOR_LARGE['block_pixels']\
+    """Get's a large QR for exterior use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=EXTERIOR_LARGE['error_correction'],
+                                block_pixels=EXTERIOR_LARGE['block_pixels'],
+                                border_blocks=EXTERIOR_LARGE['border_blocks'])
+    return _decorate_pil(non_decorated, language=language,
+                         margin=EXTERIOR_LARGE['block_pixels']\
                                * EXTERIOR_LARGE['border_blocks'])
 
 
 def publishing_small_qr_pil(text, language='es'):
-    """Get's a small QR"""
-    non_decorated = get_qr_pil(text,
-                               ec_level=PUBLISHING_SMALL['error_correction'],
-                               block_pixels=PUBLISHING_SMALL['block_pixels'],
-                               border_blocks=PUBLISHING_SMALL['border_blocks'])
-    return decorate_pil(non_decorated, language=language,
-                        margin=PUBLISHING_SMALL['block_pixels']\
+    """Get's a small QR for publishing use"""
+    non_decorated = _get_qr_pil(text,
+                                ec_level=PUBLISHING_SMALL['error_correction'],
+                                block_pixels=PUBLISHING_SMALL['block_pixels'],
+                                border_blocks=PUBLISHING_SMALL['border_blocks']
+                                )
+    return _decorate_pil(non_decorated, language=language,
+                         margin=PUBLISHING_SMALL['block_pixels']\
                                * PUBLISHING_SMALL['border_blocks'])
 
 
 def publishing_medium_qr_pil(text, language='es'):
-    """Get's a medium QR"""
-    non_decorated = get_qr_pil(text,
+    """Get's a medium QR for publishing use"""
+    non_decorated = _get_qr_pil(text,
                                ec_level=PUBLISHING_MEDIUM['error_correction'],
                                block_pixels=PUBLISHING_MEDIUM['block_pixels'],
                                border_blocks=PUBLISHING_MEDIUM['border_blocks']
-                              )
-    return decorate_pil(non_decorated, language=language,
-                        margin=PUBLISHING_MEDIUM['block_pixels']\
+                               )
+    return _decorate_pil(non_decorated, language=language,
+                         margin=PUBLISHING_MEDIUM['block_pixels']\
                                * PUBLISHING_MEDIUM['border_blocks'])
 
 
-def decorate_pil(one_pil, language='es', margin=100):
-    footer = Image.open(FOOTER_IMAGE_PATH)
-    (footer_width, footer_height) = footer.size
+def custom_qr_pil(text, error_correction, block_pixels, border_blocks,
+                  language='es', logo=True):
+    """Get's a custom QR with decorations"""
+    non_decorated = _get_qr_pil(text, ec_level=error_correction,
+                                block_pixels=block_pixels,
+                                border_blocks=border_blocks)
+    return _decorate_pil(non_decorated, language=language,
+                        margin=block_pixels * border_blocks, logo=logo)
+
+
+def _decorate_pil(one_pil, language='es', margin=100, logo=True):
+    """Takes a PIL with encoded QR and decorates it"""
+    # TTF font size must be aprox 1/4 of margin (given in pixels)
+    font_size = margin / 4
+    # Vertical margin from image inferior border (3 lines of text)
+    v_margin = font_size * 3
     (pil_width, pil_height) = one_pil.size
-    one_pil.paste(footer, (pil_width - margin - footer_width,
-                  margin - footer_height), footer)
+
+    if logo:
+        footer = Image.open(FOOTER_IMAGE_PATH)
+        (footer_width, footer_height) = footer.size
+        one_pil.paste(footer, (pil_width - margin - footer_width,
+                      margin / 2 - footer_height / 2), footer)
+
     draw = ImageDraw.Draw(one_pil)
 
     if language not in TEXT_TRANS:
         raise Exception('No "%s" language text.' % language)
 
-    # TTF font size must be aprox 1/4 of margin (given in pixels)
-    font_size = margin / 4
     text_font = ImageFont.truetype(FOOTER_TEXT_FONT, font_size)
-    draw.text((margin, pil_height - footer_height), TEXT_TRANS[language],
+    draw.text((margin, pil_height - v_margin), TEXT_TRANS[language],
               font=text_font, fill=FOOTER_TEXT_COLOR)
-    draw.text((margin, pil_height - footer_height + font_size + 2),
+    # We give an extra 4 px for line separation
+    draw.text((margin, pil_height - v_margin + font_size + 4),
                FOOTER_URL, font=text_font, fill=FOOTER_TEXT_COLOR)
-    one_pil.show()
+    return one_pil
 
 
 def pil_to_svg(pil_to_convert):
