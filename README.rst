@@ -24,9 +24,9 @@ Common to all functions
 All functions take a text parameter and a optional language parameter for
 the footer language. As of version 0.1 only this languages are recognized:
 
-'es' - Spanish
-'en' - English
-'br' - Portuguese (Brazilian)
+* 'es' - Spanish
+* 'en' - English
+* 'br' - Portuguese (Brazilian)
 
 Print sizes will directly depend on printing resolution, this library expects
 180dpi as default print quality/resolution for all predefined QR generations
@@ -81,7 +81,7 @@ custom_qr_pil(text, error_correction, block_pixels, border_blocks, language='es'
 ---------------------------------------------------------------------------------
 Returns a custom sized QR especified by:
 
-error_correction - (str) 'L', 'M', 'Q', 'H' (7%, 15%, 25% and 30% respectively)
-block_pixels     - (int) Size in pixels (int) for QR blocks (modules)
-border_blocks    - (int) How much blocks (modules) conform the image margin
-logo             - (bool) If the upper right logo is pasted in image header
+* error_correction - (str) 'L', 'M', 'Q', 'H' (7%, 15%, 25% and 30% respectively)
+* block_pixels     - (int) Size in pixels (int) for QR blocks (modules)
+* border_blocks    - (int) How much blocks (modules) conform the image margin
+* logo             - (bool) If the upper right logo is pasted in image header
