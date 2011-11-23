@@ -1,30 +1,13 @@
 # coding: utf-8
 # (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
-from os.path import abspath, dirname
-import sys
-
-path = dirname(abspath(__file__))
-if path not in sys.path:
-    sys.path.append(path)
-lib = path + '/lib'
-if lib not in sys.path:
-    sys.path.insert(0, lib)
-
-import imp 
-try:
-    imp.find_module('config') # Assumed to be in the same directory.
-except ImportError:
-    import sys 
-    sys.stderr.write("Error: Can't find the file 'config.py' in the directory containing %r." % __file__)
-    sys.exit(1)
-
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
                     PUBLISHING_SMALL, PUBLISHING_MEDIUM,
                     FOOTER_IMAGE_PATH, FOOTER_TEXT_FONT, FOOTER_TEXT_COLOR,
                     FOOTER_URL, TEXT_TRANS) 
 from lib.pyqrcode import (MakeQRImage, QRErrorCorrectLevel)
-from lib.potrace import Bitmap
+# Still not used
+# from lib.potrace import Bitmap
 
 from PIL import (Image, ImageDraw, ImageFont)
 import numpy
@@ -179,7 +162,7 @@ def _decorate_pil(one_pil, language='es', margin=100, logo=True):
     return one_pil
 
 
-def pil_to_svg(pil_to_convert):
+def _pil_to_svg(pil_to_convert):
     """Converts PIL to SVG"""
     mode_f_converted = pil_to_convert.convert(mode='F')
     as_array = numpy.asarray(mode_f_converted)
