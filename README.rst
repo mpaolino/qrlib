@@ -7,14 +7,14 @@ This is a library for QR images generation specifically designed for the
 
 Sample Usage
 ============
-::
-
-import qrlib
-
-one_qr = qrlib.interior_small_qr_pil('http://ideal.com.uy', language='en')
-one_qr.show()
 
 ::
+
+    import qrlib
+
+    one_qr = qrlib.interior_small_qr_pil('http://ideal.com.uy', language='en')
+    one_qr.show()
+
 
 
 API
