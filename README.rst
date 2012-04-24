@@ -93,6 +93,6 @@ size.
 Returns a custom sized QR especified by:
 
 * error_correction - (str) 'L', 'M', 'Q', 'H' (7%, 15%, 25% and 30% respectively)
-* block_pixels     - (int) Size in pixels (int) for QR blocks (modules)
+* block_pixels     - (int) Size in pixels for QR blocks (modules)
 * border_blocks    - (int) How much blocks (modules) conform the image margin
 * logo             - (bool) If the upper right logo is pasted in image header

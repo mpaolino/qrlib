@@ -4,7 +4,7 @@ from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
                     PUBLISHING_SMALL, PUBLISHING_MEDIUM,
                     FOOTER_IMAGE_PATH, FOOTER_TEXT_FONT, FOOTER_TEXT_COLOR,
-                    FOOTER_URL, TEXT_TRANS) 
+                    FOOTER_URL, TEXT_TRANS)
 from lib.pyqrcode import (MakeQRImage, QRErrorCorrectLevel)
 # Still not used
 # from lib.potrace import Bitmap
