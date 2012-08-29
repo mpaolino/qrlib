@@ -2,8 +2,7 @@
 qrlib
 =====
 
-This is a library for QR images generation specifically designed for the
-"spot" project.
+This is a library for QR images generation.
 
 Sample Usage
 ============
@@ -22,7 +21,7 @@ API
 
 The API is very simple. There are several functions to generate
 predefined-sized QRs and customized size QRs. The library will choose the
-minimum QR version for the text lenght to be encoded and will decorate the
+minimum QR version for the text length to be encoded and will decorate the
 image with a logo and a text footer aligned appropriately and return a PIL
 image.
 

@@ -10,7 +10,7 @@ from lib.pyqrcode import (MakeQRImage, QRErrorCorrectLevel)
 # from lib.potrace import Bitmap
 
 from PIL import (Image, ImageDraw, ImageFont)
-import numpy
+#import numpy
 
 
 def _get_qr_pil(text, ec_level='M', block_pixels=10, border_blocks=4):
