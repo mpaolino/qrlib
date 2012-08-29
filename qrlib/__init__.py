@@ -15,6 +15,12 @@ import imp
 
 try:
     imp.find_module('config')  # Assumed to be in the same directory.
+    from .qrlib import (interior_small_qr_pil, interior_medium_qr_pil,
+                        interior_large_qr_pil, exterior_small_qr_pil,
+                        exterior_medium_qr_pil, exterior_large_qr_pil,
+                        publishing_small_qr_pil, publishing_medium_qr_pil,
+                        custom_qr_pil)
+
 except ImportError:
     import sys
     sys.stderr.write("Error: Can't find the file 'config.py' in the directory containing %r." % __file__)

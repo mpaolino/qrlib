@@ -8,9 +8,9 @@ from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
 from lib.pyqrcode import (MakeQRImage, QRErrorCorrectLevel)
 # Still not used
 # from lib.potrace import Bitmap
+#import numpy
 
 from PIL import (Image, ImageDraw, ImageFont)
-#import numpy
 
 
 def _get_qr_pil(text, ec_level='M', block_pixels=10, border_blocks=4):
@@ -162,10 +162,10 @@ def _decorate_pil(one_pil, language='es', margin=100, logo=True):
     return one_pil
 
 
-def _pil_to_svg(pil_to_convert):
-    """Converts PIL to SVG"""
-    mode_f_converted = pil_to_convert.convert(mode='F')
-    as_array = numpy.asarray(mode_f_converted)
-    potrace_bmp = Bitmap(as_array)
-    potraced_path = potrace_bmp.trace()
-    return None
+#def _pil_to_svg(pil_to_convert):
+#    """Converts PIL to SVG"""
+#    mode_f_converted = pil_to_convert.convert(mode='F')
+#    as_array = numpy.asarray(mode_f_converted)
+#    potrace_bmp = Bitmap(as_array)
+#    potraced_path = potrace_bmp.trace()
+#    return None

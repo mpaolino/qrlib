@@ -1,13 +1,19 @@
 # coding: utf-8
-FOOTER_IMAGE_PATH = 'static/ideal_160x80.png'
-FOOTER_TEXT_FONT = 'fonts/FreeSans.ttf'
+from os.path import abspath, dirname
+
+
+# relative to static dir
+FOOTER_IMAGE = 'ideal_160x80.png'
+# relative to font dir
+FOOTER_FONT = 'FreeSans.ttf'
+
 FOOTER_TEXT_COLOR = '#000000'
 
 TEXT_TRANS = {'es': 'Descargue su lector de QR',
               'en': 'Download your QR reader',
               'br': 'Baixe o seu leitor de QR'}
 
-FOOTER_URL = 'http://qr.ideal.com.uy'
+FOOTER_URL = 'http://cuadraditos.uy'
 
 # QR code version 1 (21x21 modules) 10-25 alphanumeric chars
 # 180 dpi default print quality
@@ -49,3 +55,7 @@ PUBLISHING_SMALL = {'block_pixels': 20,
 PUBLISHING_MEDIUM = {'block_pixels': 30,
                      'border_blocks': 5,
                      'error_correction': 'M'}
+
+LIB_ROOT = dirname(abspath(__file__))
+FOOTER_TEXT_FONT = LIB_ROOT + "/fonts/" + FOOTER_FONT
+FOOTER_IMAGE_PATH = LIB_ROOT + "/static/" + FOOTER_IMAGE

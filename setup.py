@@ -25,5 +25,5 @@ setup(
         ],
     package_dir={'qrlib': 'qrlib'},
     package_data={'qrlib': ['static/*.png', 'fonts/*.ttf']},
-    install_requires=['PIP>=1.1.7']
+    install_requires=['PIL>=1.1.7']
     )
