@@ -20,8 +20,8 @@ FOOTER_URL = 'http://cuadraditos.uy'
 
 # 20 block_pixels = 420x420 px = 2.33x2.33 inches = 5.92x5.92 cm
 # 5 border_blocks = 100px
-INTERIOR_SMALL = {'block_pixels': 20,
-                  'border_blocks': 5,
+INTERIOR_SMALL = {'width': 420,
+                  'height': 420,
                   'error_correction': 'M'}
 
 # 40 block_pixels = 840x840px = 4.66x4.66 inches = 11.84x11.84 cm
