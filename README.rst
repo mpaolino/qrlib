@@ -95,3 +95,15 @@ Returns a custom sized QR especified by:
 * block_pixels     - (int) Size in pixels for QR blocks (modules)
 * border_blocks    - (int) How much blocks (modules) conform the image margin
 * logo             - (bool) If the upper right logo is pasted in image header
+
+
+Tests
+=====
+
+To run included tests you must be in the library directory and then run:
+
+$ python -m unittest2 discover
+
+Once installed you can run the tests from any directory:
+
+$ python -m unittest2 discover qrlib

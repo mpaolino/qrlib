@@ -10,14 +10,14 @@ def read(fname):
 
 setup(
     name = "qrlib",
-    version = "0.0.1",
+    version = "0.0.2",
     author = "Miguel Paolino",
     author_email = "mpaolino@ideal.com.uy",
-    description = ("QR generation library"),
+    description = ("QR Image and PDF generation library"),
     license = "Propietary",
     keywords = "qr library qrlib ideal",
     url = "http://github.com/mpaolino/qrlib",
-    packages=['qrlib', 'qrlib.lib', 'qrlib.fonts', 'qrlib.static'],
+    packages=['qrlib', 'qrlib.fonts', 'qrlib.static', 'qrlib.tests'],
     long_description=read('README.rst'),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -25,5 +25,5 @@ setup(
         ],
     package_dir={'qrlib': 'qrlib'},
     package_data={'qrlib': ['static/*.png', 'fonts/*.ttf']},
-    install_requires=['PIL>=1.1.7']
+    install_requires=['PIL>=1.1.7', 'unittest2>=0.5.1', 'zbar>=0.10']
     )
