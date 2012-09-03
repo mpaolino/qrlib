@@ -2,15 +2,19 @@
 # (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
-                    FOOTER_IMAGE_PATH, FOOTER_TEXT_FONT, FOOTER_TEXT_COLOR,
-                    FOOTER_URL, TEXT_TRANS)
+                    LOGO_IMAGE_PATH, LOGO_MARGIN, FOOTER_TEXT_FONT,
+                    FOOTER_TEXT_COLOR, FOOTER_URL, TEXT_TRANS)
 
 from reportlab.graphics import (renderPDF, renderPM, barcode)
 from reportlab.pdfgen import canvas
-from validation import (width_validation, height_validation, ec_level_validation,
-                        format_validation, application_validation, appsize_validation,
+from reportlab.lib.pagesizes import A4
+from validation import (width_validation, height_validation,
+                        ec_level_validation, format_validation,
+                        application_validation, appsize_validation,
                         language_validation)
 import cStringIO
+import Image
+
 
 def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
                      app_size='small'):
@@ -24,8 +28,9 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
         app = app.lower()
         app_size = app_size.lower()
     except Exception, e:
-        raise e 
+        raise e
 
+    page_width, page_height = A4
     width = None
     height = None
     ec_level = None
@@ -35,11 +40,11 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             ec_level=INTERIOR_SMALL['error_correction']
             width=INTERIOR_SMALL['width']
             height=INTERIOR_SMALL['height']
-        if app_size == 'medium':
+        elif app_size == 'medium':
             ec_level=INTERIOR_MEDIUM['error_correction']
             width=INTERIOR_MEDIUM['width']
             height=INTERIOR_MEDIUM['height']
-        if app_size == 'large':
+        elif app_size == 'large':
             ec_level=INTERIOR_LARGE['error_correction']
             width=INTERIOR_LARGE['width']
             height=INTERIOR_LARGE['height']
@@ -48,30 +53,38 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             ec_level=EXTERIOR_SMALL['error_correction']
             width=EXTERIOR_SMALL['width']
             height=EXTERIOR_SMALL['height']
-        if app_size == 'medium':
+        elif app_size == 'medium':
             ec_level=EXTERIOR_MEDIUM['error_correction']
             width=EXTERIOR_MEDIUM['width']
             height=EXTERIOR_MEDIUM['height']
-        if app_size == 'large':
+        elif app_size == 'large':
             ec_level=EXTERIOR_LARGE['error_correction']
             width=EXTERIOR_LARGE['width']
             height=EXTERIOR_LARGE['height']
     else:
-        raise Exception('No app type defined for QR generation. Awkward!')
+        raise Exception('No app type defined for QR generation, looks like' +\
+                        ' validation failed. Awkward!')
     
    
     filelike = cStringIO.StringIO()
     qr_canvas = canvas.Canvas(filelike)
     qr_draw = barcode.createBarcodeDrawing("QR", value=text, barWidth=width, 
                                            barHeight=height, barLevel=ec_level)
+
     if qr_format == 'PDF':
-        x = qr_canvas.width
-        renderPDF.draw(qr_draw, qr_canvas)
+        #x = qr_canvas.width
+        # Center qr draw on page
+        qr_draw_x = (page_width / 2) - (width / 2)
+        qr_draw_y = (page_height / 2) - (height / 2)
+        # Insert draw in the canvas, centered coord
+        renderPDF.draw(qr_draw, qr_canvas, x=qr_draw_x, y=qr_draw_y)
+        logo = Image.open(LOGO_IMAGE_PATH)
+        logo_width, logo_height = logo.size
+        logo_x = qr_draw_x + width - logo_width
+        logo_y = qr_draw_y + height - logo_height + LOGO_MARGIN
+        qr_canvas.drawImage(LOGO_IMAGE_PATH, x=logo_x, y=logo_y)
+        # Save canvas to file
         qr_canvas.save()    
-        #footer = Image.open(FOOTER_IMAGE_PATH)
-        #(footer_width, footer_height) = footer.size
-        one_pil.paste(footer, (pil_width - margin - footer_width,
-                      margin / 2 - footer_height / 2), footer)
 
 
     else:
@@ -98,7 +111,7 @@ def _decorate_pil(one_pil, language='es', margin=100, logo=True):
     (pil_width, pil_height) = one_pil.size
 
     if logo:
-        footer = Image.open(FOOTER_IMAGE_PATH)
+        footer = Image.open(LOGO_PATH)
         (footer_width, footer_height) = footer.size
         one_pil.paste(footer, (pil_width - margin - footer_width,
                       margin / 2 - footer_height / 2), footer)

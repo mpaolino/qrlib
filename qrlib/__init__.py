@@ -14,14 +14,12 @@ import imp
 
 
 try:
-    #imp.find_module('config')  # Assumed to be in the same directory.
-    from .config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
-                    EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
-                    FOOTER_IMAGE_PATH, FOOTER_TEXT_FONT, FOOTER_TEXT_COLOR,
-                    FOOTER_URL, TEXT_TRANS)
     from .validation import (width_validation, height_validation,
-                             ec_level_validation)
-    
+                             ec_level_validation, validate_all_config,
+                             logo_margin_validation)
+    from .config import *
+
+    #validate_all_config()    
     width_validation(INTERIOR_SMALL['width'])
     width_validation(INTERIOR_MEDIUM['width'])
     width_validation(INTERIOR_LARGE['width'])
@@ -40,15 +38,13 @@ try:
     ec_level_validation(EXTERIOR_SMALL['error_correction'])
     ec_level_validation(EXTERIOR_MEDIUM['error_correction'])
     ec_level_validation(EXTERIOR_LARGE['error_correction'])
+    logo_margin_validation(LOGO_MARGIN)
 
 
-    from .qrlib import (interior_small_qr_pil, interior_medium_qr_pil,
-                        interior_large_qr_pil, exterior_small_qr_pil,
-                        exterior_medium_qr_pil, exterior_large_qr_pil,
-                        publishing_small_qr_pil, publishing_medium_qr_pil,
-                        custom_qr_pil)
+    from .qrlib import (generate_qr_file)
 
-except ImportError:
-    import sys
-    sys.stderr.write("Error: Can't find the file 'config.py' in the directory containing %r." % __file__)
+except ImportError, e:
+    print e
+#    import sys
+#    sys.stderr.write("Error: Can't find the file 'config.py' in the directory containing %r." % __file__)
     sys.exit(1)
