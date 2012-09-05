@@ -18,6 +18,25 @@ import Image
 
 def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
                      app_size='small'):
+    """
+        Returns a QR of the provided text in the format and size specified
+        Specific values are customizable in config.py
+
+        Parameters:
+
+            language: Text language for PDF footer. Values 'es', 'en', 'br'.
+                      Defaults to 'es'.
+
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'. 
+                       Defaults to 'PDF'.
+
+            app: Application for QR, 'interior' or 'exterior'. 
+                 Automatically chooses error correction level for QR.
+                 Defaults to 'interior'.
+
+            app_size: Application size, 'small', 'medium', 'large'.
+                      Defaults to 'small'.
+    """
     try:
         language_validation(language)
         format_validation(qr_format)
