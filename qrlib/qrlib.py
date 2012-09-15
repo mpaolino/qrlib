@@ -19,7 +19,6 @@ import Image
 import reportlab.lib.utils
 reportlab.lib.utils.Image= Image
 import math
-from os import path
 from xml.etree import cElementTree as et
 import pyqrcode
 import re
@@ -50,12 +49,12 @@ def _get_style_dict(style):
 # If it has an attrib to set (or it's children), it must be whatever we say
 def _set_attrib(one_elem, color='#000000'):
     '''
-        Recursive function to set all elements and this childres
+        Recursive function to set all elements and this childrens
         that have attributes to change stroke and fill colors.
     '''
     if hasattr(one_elem, 'getchildren'):
         for elem in one_elem.getchildren():
-            _set_attrib(elem)
+            _set_attrib(elem, color=color)
     if hasattr(one_elem, 'attrib') and 'style' in one_elem.attrib:
         elem_style = one_elem.attrib['style']
         elem_style = re.sub(r'fill:\#\d+;', 'fill:%s;' % color, elem_style)
@@ -77,7 +76,7 @@ def _insert_shape(x, y, shape, final_svg, style_dict=None, color='#000000'):
                 str((y * BLOCK_SIZE) + bound) + ")" 
     new_container = et.SubElement(final_svg, 'g', transform=translate)
     for elem in style_dict[shape]:
-        _set_attrib(elem)
+        _set_attrib(elem, color=color)
         new_container.append(elem)
 
 
