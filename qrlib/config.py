@@ -49,18 +49,14 @@ EXTERIOR_LARGE = {'width': 400,
                   'height': 400,
                   'error_correction': 'H'}
 
-BLOCK_SIZE = 10
+BLOCK_SIZE = 10  # In pixels, svg style files must be BLOCK_SIZExBLOCK_SIZE size
 
 LIB_ROOT = dirname(abspath(__file__))
 FOOTER_TEXT_FONT = LIB_ROOT + "/fonts/" + FOOTER_FONT
 LOGO_IMAGE_PATH = LIB_ROOT + "/static/" + LOGO_IMAGE
 
-STYLE_FILES = ['0.svg', '1lD.svg', '1lU.svg', '1rD.svg',
-               '1rU.svg', '2luD.svg', '2rdU.svg', 
-               '2ruD.svg', '43.svg']
-
+STYLE_FILES = ['2b.svg', '1b.svg', '1b3b.svg', '2a1b.svg',
+               '2a1b1a.svg', '2a1b2c.svg', '2a1b2c3b.svg']
 
 SHAPE_GROUP = '{http://www.w3.org/2000/svg}g'
 QUIET_ZONE = 4  # In blocks
-
-
