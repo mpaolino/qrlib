@@ -26,13 +26,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <rect
-     width="9.7862034"
-     height="9.7862034"
-     rx="0"
-     ry="0.048446555"
-     x="0.10689811"
-     y="0.10689817"
-     id="rect3011"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.21379688;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <path
+     d="m 1.6214053,1.3097399 c 2.2479838,-2.13636375 8.1339145,-0.85766009 8.1339145,-0.85766009 0,0 0.8991372,6.14253829 -1.3488469,8.27890199 -2.2479838,2.1363642 -8.18853966,0.784922 -8.18853966,0.784922 0,0 -0.8445112,-6.0698002 1.40347256,-8.2061638 z"
+     id="path3759"
+     style="fill:none;stroke:#000000;stroke-width:0.0929649;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
 </svg>
