@@ -3,7 +3,7 @@ import pyqrcode
 
 
 qrcode = qrsvg.generate_QR_for_url('http://ideal.com.uy', color='#CC66CC',
-                                   style='stylish')
+                                   style='circle')
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
 f.close()

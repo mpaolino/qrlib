@@ -1,9 +1,11 @@
 import pyqrcode
 from xml.etree import cElementTree as et
-from config import (BLOCK_SIZE, SHAPE_GROUP, STYLE_FILES, QUIET_ZONE)
+from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES, 
+                    QUIET_ZONE)
 
 import re
 import cStringIO
+import ipdb
 
 
 def _get_style_dict(style):
@@ -22,6 +24,11 @@ def _get_style_dict(style):
         style_dict[filename] = []
         for group_elem in root.iter(SHAPE_GROUP):
             style_dict[filename].append(group_elem)
+        # No group defined, must be basic shape
+        if not style_dict[filename]:
+            for basic_shape in BASIC_SHAPES:
+                for group_elem in root.iter(basic_shape):
+                    style_dict[filename].append(group_elem)
     return style_dict
 
 
@@ -118,6 +125,7 @@ def _two_touching(top_left=False, top_center=False, top_right=False,
                   bottom_left=False, bottom_center=False,
                   bottom_right=False):
 
+    #return ('2b.svg')
     # First the cross
     if top_center and bottom_center:
         return ('1b3b.svg', 0)
@@ -154,6 +162,7 @@ def _three_touching(top_left=False, top_center=False, top_right=False,
                     bottom_left=False, bottom_center=False,
                     bottom_right=False):
 
+    #return ('2b.svg')
     # First the cross
     if middle_left and top_center and middle_right:
         return ('2a1b2c.svg', 0)
@@ -195,6 +204,7 @@ def _four_touching(top_left=False, top_center=False, top_right=False,
                    bottom_left=False, bottom_center=False,
                    bottom_right=False):
 
+    #return ('2b.svg')
     cross = [top_center, middle_right, bottom_center, middle_left]
     diagonals = [top_left, top_right, bottom_right, bottom_left]
 
@@ -230,6 +240,40 @@ def _four_touching(top_left=False, top_center=False, top_right=False,
 
     # Every other posibility are all diagonals, treat it like alone node
     return ('2b.svg', 0)
+
+
+def _five_touching(top_left=False, top_center=False, top_right=False,
+                   middle_left=False, middle_right=False,
+                   bottom_left=False, bottom_center=False,
+                   bottom_right=False):
+
+    cross = [top_center, middle_right, bottom_center, middle_left]
+
+    if cross.count(True) == 1:
+        return _one_touching(top_left=False, top_center=top_center,
+                             top_right=False, middle_left=middle_left,
+                             middle_right=middle_right,
+                             bottom_left=False,
+                             bottom_center=bottom_center,
+                             bottom_right=False)
+    if cross.count(True) == 2:
+        return _two_touching(top_left=False, top_center=top_center,
+                             top_right=False, middle_left=middle_left,
+                             middle_right=middle_right,
+                             bottom_left=False,
+                             bottom_center=bottom_center,
+                             bottom_right=False)
+    if cross.count(True) == 3:
+        return _three_touching(top_left=False, top_center=top_center,
+                               top_right=False, middle_left=middle_left,
+                               middle_right=middle_right,
+                               bottom_left=False,
+                               bottom_center=bottom_center,
+                               bottom_right=False)
+    if cross.count(True) == 4:
+        return ('2a1b2c3b.svg', 0)
+
+    raise Exception('Five touching node, none in cross section, impossible')
 
 
 def _choose_module(top_left=False, top_center=False, top_right=False,
@@ -271,7 +315,14 @@ def _choose_module(top_left=False, top_center=False, top_right=False,
                               bottom_left=bottom_left,
                               bottom_center=bottom_center,
                               bottom_right=bottom_right)
-    if how_many > 4:
+    if how_many == 5:
+        return _five_touching(top_left=top_left, top_center=top_center,
+                              top_right=top_right, middle_left=middle_left,
+                              middle_right=middle_right,
+                              bottom_left=bottom_left,
+                              bottom_center=bottom_center,
+                              bottom_right=bottom_right)
+    if how_many > 5:
         return ('2a1b2c3b.svg', 0)
 
 
@@ -292,15 +343,16 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
             # Module is active
             # create an SVG XML element (see the SVG specification
             # for attribute details)
-            top_left = qrcode.isDark(row - 1, column - 1)
-            top_center = qrcode.isDark(row, column - 1)
-            top_right = qrcode.isDark(row, column + 1)
-            middle_left = qrcode.isDark(row - 1, column)
-            middle_right = qrcode.isDark(row + 1, column)
-            bottom_left = qrcode.isDark(row - 1, column + 1)
-            bottom_center = qrcode.isDark(row, column + 1)
+            top_left = qrcode.isDark(row, column - 1)
+            top_center = qrcode.isDark(row - 1, column)
+            top_right = qrcode.isDark(row + 1, column + 1)
+            middle_left = qrcode.isDark(row, column - 1)
+            middle_right = qrcode.isDark(row, column + 1)
+            bottom_left = qrcode.isDark(row + 1, column - 1)
+            bottom_center = qrcode.isDark(row + 1, column)
             bottom_right = qrcode.isDark(row + 1, column + 1)
 
+            
             shape = _choose_module(top_left=top_left,
                                    top_center=top_center,
                                    top_right=top_right,
@@ -312,6 +364,7 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
 
             _insert_shape(column, row, shape, svg_doc,
                           style_dict=style_dict, color=color)
+
 
     filelike = cStringIO.StringIO()
     filelike.write('<?xml version=\"1.0\" standalone=\"no\"?>\n')

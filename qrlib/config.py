@@ -59,4 +59,9 @@ STYLE_FILES = ['2b.svg', '1b.svg', '1b3b.svg', '2a1b.svg',
                '2a1b1a.svg', '2a1b2c.svg', '2a1b2c3b.svg']
 
 SHAPE_GROUP = '{http://www.w3.org/2000/svg}g'
+
+BASIC_SHAPES = ['{http://www.w3.org/2000/svg}rect',
+                '{http://www.w3.org/2000/svg}circle',
+                '{http://www.w3.org/2000/svg}ellipse']
+
 QUIET_ZONE = 4  # In blocks
