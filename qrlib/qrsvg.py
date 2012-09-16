@@ -1,11 +1,11 @@
 import pyqrcode
 from xml.etree import cElementTree as et
-from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES, 
-                    QUIET_ZONE)
+from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
+                    QUIET_ZONE, EYE_STYLE_FILES)
 
 import re
 import cStringIO
-import ipdb
+#import ipdb
 
 
 def _get_style_dict(style):
@@ -22,14 +22,35 @@ def _get_style_dict(style):
         document = et.parse(filepath)
         root = document.getroot()
         style_dict[filename] = []
-        for group_elem in root.iter(SHAPE_GROUP):
+        for group_elem in root.findall(SHAPE_GROUP):
             style_dict[filename].append(group_elem)
         # No group defined, must be basic shape
-        if not style_dict[filename]:
-            for basic_shape in BASIC_SHAPES:
-                for group_elem in root.iter(basic_shape):
-                    style_dict[filename].append(group_elem)
+        for basic_shape in BASIC_SHAPES:
+            for group_elem in root.findall(basic_shape):
+                style_dict[filename].append(group_elem)
     return style_dict
+
+
+def _get_eyes_dict(style):
+    '''
+        Iterates over EYE_STYLES for the defined style and builds
+        a dictionary with it's shape groups
+    '''
+    style = style.lower()
+    directory = 'static/eyes/' + style
+    eyes_dict = {}
+
+    for filename in EYE_STYLE_FILES:
+        filepath = directory + '/' + filename
+        document = et.parse(filepath)
+        root = document.getroot()
+        eyes_dict[filename] = []
+        for group_elem in root.findall(SHAPE_GROUP):
+            eyes_dict[filename].append(group_elem)
+        for basic_shape in BASIC_SHAPES:
+            for group_elem in root.findall(basic_shape):
+                eyes_dict[filename].append(group_elem)
+    return eyes_dict
 
 
 # If it has an attrib to set (or it's children), it must be whatever we say
@@ -45,10 +66,12 @@ def _set_attrib(one_elem, color='#000000'):
         elem_style = one_elem.attrib['style']
         elem_style = re.sub(r'fill:\#\d+;', 'fill:%s;' % color, elem_style)
         elem_style = re.sub(r'stroke:\#\d+;', 'stroke:%s;' % color, elem_style)
+        #elem_style = re.sub(r'stroke-width:\#\d+;', 'stroke-with:0.5;',
+        #                        elem_style)
         one_elem.attrib['style'] = elem_style
 
 
-def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict=None,
+def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict='default',
                                                             color='#000000'):
     '''
         Inserts svg shape in the appropiate place, with selected style
@@ -254,7 +277,7 @@ def _5plus_touching(top_left=False, top_center=False, top_right=False,
                               bottom_left=False,
                               bottom_center=bottom_center,
                               bottom_right=False)
- 
+
     if cross.count(True) == 3:
         return _three_touching(top_left=False, top_center=top_center,
                                top_right=False, middle_left=middle_left,
@@ -330,10 +353,118 @@ def _choose_module(top_left=False, top_center=False, top_right=False,
                                bottom_right=bottom_right)
 
 
-def _qrcode_to_svg(qrcode, style=None, color='#000000'):
+def _is_outer_eye_position(row, column, qr_size):
+    if row == 0 and column == 0:
+        # Top left corner eye
+        return True
+    if row == (qr_size - 7) and column == 0:
+        # Bottom left corner eye
+        return True
+    if row == 0 and column == (qr_size - 7):
+        # Top right corner eye
+        return True
+    return False
+
+
+def _within_eyes(row, column, qr_size):
+    if row <= 6 and column <= 6:
+        # In top left corner eye
+        return True
+    if row >= (qr_size - 7) and column <= 6:
+        # In bottom left corner eye
+        return True
+    if row <= 6 and column <= (qr_size - 7):
+        # In top right corner eye
+        return True
+    return False
+
+
+def _within_outer_eye(row, column, qr_size):
+    # Top left eye
+    if row == 0 and column <= 6:
+        # Top edge
+        return True
+    if row <= 6 and column == 0:
+        # Left edge
+        return True
+    if row <= 6 and column == 6:
+        # Right edge
+        return True
+    if row == 6 and column <= 6:
+        # Bottom edge
+        return True
+
+    # Bottom left eye
+    if row == qr_size - 7 and column <= 6:
+        # Top edge
+        return True
+    if row == qr_size - 1 and column <= 6:
+        # Bottom edge
+        return True
+    if row >= qr_size - 7 and column == 0:
+        # Left edge
+        return True
+    if row >= qr_size - 7 and column == 6:
+        # Right edge
+        return True
+
+    # Top right eye
+    if row == 0 and column >= (qr_size - 7):
+        # Top edge
+        return True
+    if row == 6 and column >= (qr_size - 7):
+        # Bottom edge
+        return True
+    if row <= 6 and column == (qr_size - 7):
+        # Left edge
+        return True
+    if row <= 6 and column == (qr_size - 1):
+        # Right edge
+        return True
+    return False
+
+
+def _within_inner_eye(row, column, qr_size):
+    if row >= 2 and row <= 4 and column >= 2 and column <= 4:
+        # In top left inner eye
+        return True
+    if row >= qr_size - 6 and row <= qr_size - 3 and column >= 2 \
+                                                    and column <= 4:
+        # In the bottom left inner eye
+        return True
+    if row >= 2 and row <= 4 and column >= (qr_size - 6) \
+                                        and column <= (qr_size - 3):
+        # In the top right inner eye
+        return True
+    return False
+
+
+def _is_inner_eye_position(row, column, qr_size):
+    if row == 2 and column == 2:
+        # Top left corner center eye first module
+        return True
+    if row == (qr_size - 5) and column == 2:
+        # Bottom left corner center eye first module
+        return True
+    if row == 2 and column == (qr_size - 5):
+        # Top right corner center eye first module
+        return True
+    return False
+
+
+def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
+                    inner_eye_style='default', inner_eye_color='#000000',
+                    outer_eye_style='default', outer_eye_color='#000000'):
     style_dict = None
+    inner_eyes_dict = None
+    outer_eyes_dict = None
     if style:
         style_dict = _get_style_dict(style)  # Build the style dictionary
+    if outer_eye_style:
+        outer_eyes_dict = _get_eyes_dict(outer_eye_style)
+    if inner_eye_style:
+        inner_eyes_dict = _get_eyes_dict(inner_eye_style)
+
     module_count = qrcode.getModuleCount()   # Number of rows/columns of the QR
     # Width of the SVG QR code
     width = str((module_count + (QUIET_ZONE * 2)) * BLOCK_SIZE)
@@ -356,6 +487,30 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
             bottom_center = qrcode.isDark(row + 1, column)
             bottom_right = qrcode.isDark(row + 1, column + 1)
 
+            # Let's check if there's a style for outer eye and insert the shape
+            if outer_eyes_dict and _is_outer_eye_position(row, column,
+                                                         module_count):
+                _insert_shape(column, row, ('outer.svg', 0), svg_doc,
+                              style_dict=outer_eyes_dict,
+                              color=outer_eye_color)
+                continue
+
+            # Let's check if there's a style for inner eye and insert the shape
+            if inner_eyes_dict and _is_inner_eye_position(row, column,
+                                                         module_count):
+                _insert_shape(column, row, ('inner.svg', 0), svg_doc,
+                              style_dict=inner_eyes_dict,
+                              color=inner_eye_color)
+                continue
+
+            if outer_eyes_dict and _within_outer_eye(row, column,
+                                                     module_count):
+                continue
+
+            if inner_eyes_dict and _within_inner_eye(row, column,
+                                                     module_count):
+                continue
+
             shape = _choose_module(top_left=top_left,
                                    top_center=top_center,
                                    top_right=top_right,
@@ -366,8 +521,7 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
                                    bottom_right=bottom_right)
 
             _insert_shape(column, row, shape, svg_doc,
-                          style_dict=style_dict, color=color)
-
+                          style_dict=style_dict, color=style_color)
 
     filelike = cStringIO.StringIO()
     filelike.write('<?xml version=\"1.0\" standalone=\"no\"?>\n')
@@ -377,7 +531,28 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
     return filelike
 
 
-def generate_QR_for_url(url, style=None, color='#000000'):
+def _validate_color(color):
+    string_colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
+                     'lime', 'maroon', 'navy', 'olive', 'purple', 'red',
+                     'silver', 'teal', 'white', 'yellow']
+
+    if color in string_colors or re.match('\#[0-9A-Fa-f]{6}', color):
+        return True
+    raise Exception('Invalid color \'%s\'' % (color))
+
+
+def generate_QR_for_url(url, style='default', style_color='#000000',
+                        inner_eye_style='default', inner_eye_color='#000000',
+                        outer_eye_style='default', outer_eye_color='#000000'):
+
+    _validate_color(style_color)
+    _validate_color(inner_eye_color)
+    _validate_color(outer_eye_color)
+
     qr_code = pyqrcode.MakeQR(url,
                               errorCorrectLevel=pyqrcode.QRErrorCorrectLevel.Q)
-    return _qrcode_to_svg(qr_code, style=style, color=color)
+    return _qrcode_to_svg(qr_code, style=style, style_color=style_color,
+                          inner_eye_style=inner_eye_style,
+                          inner_eye_color=inner_eye_color,
+                          outer_eye_style=outer_eye_style,
+                          outer_eye_color=outer_eye_color)

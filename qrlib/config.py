@@ -58,6 +58,8 @@ LOGO_IMAGE_PATH = LIB_ROOT + "/static/" + LOGO_IMAGE
 STYLE_FILES = ['2b.svg', '1b.svg', '1b3b.svg', '2a1b.svg',
                '2a1b1a.svg', '2a1b2c.svg', '2a1b2c3b.svg']
 
+EYE_STYLE_FILES = ['inner.svg', 'outer.svg']
+
 SHAPE_GROUP = '{http://www.w3.org/2000/svg}g'
 
 BASIC_SHAPES = ['{http://www.w3.org/2000/svg}rect',
