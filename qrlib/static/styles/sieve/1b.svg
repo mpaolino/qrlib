@@ -8,9 +8,9 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    version="1.1"
-   width="10.001686"
-   height="10.00404"
-   viewBox="0 0 10.001686 10.00404"
+   width="10"
+   height="10"
+   viewBox="0 0 9.9999999 10"
    id="svg2">
   <defs
      id="defs4" />
@@ -26,13 +26,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="matrix(0,0.19318293,-0.19379277,0,64.129117,-36.422807)"
-     id="layer1"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.58414483;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
-    <path
-       d="m 239.02346,280.54304 -49.22956,0 0,49.09124 c 0,0 51.45032,3.62683 49.22956,-49.09124 z"
-       id="path3020-7"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.58414483;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  </g>
+  <path
+     d="m 0.14240379,0.31553015 c 0.17371566,-0.1616255 9.66034201,-0.38000376 9.66034201,-0.38000376 0,0 0.2076012,9.51591631 0.1195482,9.75550131 C 9.8448,9.9018639 0.19507529,10.024511 0.19507529,10.024511 c 0,0 -0.16878288,-9.60095119 -0.0526715,-9.70898158 z"
+     id="path2990"
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.11290659;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
 </svg>

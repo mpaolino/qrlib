@@ -26,229 +26,229 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(-0.20272852,0,0,-0.20336849,48.490638,67.173022)"
+     transform="matrix(-0.20129077,0,0,-0.20192619,48.394961,66.945737)"
      id="layer1-8"
-     style="fill:#000000;fill-opacity:1;stroke:none">
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
     <path
        d="m 239.02346,280.54304 -49.22956,0 0,49.09124 c 0,0 51.45032,3.62683 49.22956,-49.09124 z"
        id="path3020-7"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.14458995"
-     y="-20.0084"
+     ry="0.049126346"
+     x="0.39267334"
+     y="-20.114719"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect3011"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.14458995"
-     y="-30.0028"
+     ry="0.049126346"
+     x="0.39267334"
+     y="-30.038239"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect13"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.14458995"
-     y="-39.9972"
+     ry="0.049126346"
+     x="0.39267334"
+     y="-39.961758"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect17"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.14458995"
-     y="-49.9916"
+     ry="0.049126346"
+     x="0.39267334"
+     y="-49.885277"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect21"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.14458995"
-     y="-59.986"
+     ry="0.049126346"
+     x="0.39267334"
+     y="-59.8088"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect25"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <g
-     transform="matrix(0,-0.20272852,0.20336849,0,2.9519782,48.615638)"
+     transform="matrix(0,-0.20129076,0.20192619,0,3.1792627,48.519963)"
      id="g29"
-     style="fill:#000000;fill-opacity:1;stroke:none">
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
     <path
        d="m 239.02346,280.54304 -49.22956,0 0,49.09124 c 0,0 51.45032,3.62683 49.22956,-49.09124 z"
        id="path31"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.019589949"
-     y="10.139"
+     ry="0.049126346"
+     x="0.26767102"
+     y="10.316201"
      id="rect86"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="59.986"
-     y="10.139"
+     ry="0.049126346"
+     x="59.8088"
+     y="10.316201"
      id="rect90"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.019589949"
-     y="20.1334"
+     ry="0.049126346"
+     x="0.26767102"
+     y="20.239723"
      id="rect114"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="59.986"
-     y="20.1334"
+     ry="0.049126346"
+     x="59.8088"
+     y="20.239723"
      id="rect134"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.019589949"
-     y="30.1278"
+     ry="0.049126346"
+     x="0.26767102"
+     y="30.163242"
      id="rect184"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="59.986"
-     y="30.1278"
+     ry="0.049126346"
+     x="59.8088"
+     y="30.163242"
      id="rect200"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.019589949"
-     y="40.1222"
+     ry="0.049126346"
+     x="0.26767102"
+     y="40.086761"
      id="rect244"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="59.986"
-     y="40.1222"
+     ry="0.049126346"
+     x="59.8088"
+     y="40.086761"
      id="rect264"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="0.019589949"
-     y="50.1166"
+     ry="0.049126346"
+     x="0.26767102"
+     y="50.010281"
      id="rect310"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="59.986"
-     y="50.1166"
+     ry="0.049126346"
+     x="59.8088"
+     y="50.010281"
      id="rect314"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <g
-     transform="matrix(0,0.20272852,-0.20336849,0,67.048022,21.634362)"
+     transform="matrix(0,0.20129076,-0.20192619,0,66.820735,21.73004)"
      id="g348"
-     style="fill:#000000;fill-opacity:1;stroke:none">
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
     <path
        d="m 239.02346,280.54304 -49.22956,0 0,49.09124 c 0,0 51.45032,3.62683 49.22956,-49.09124 z"
        id="path350"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="60.111"
-     y="-20.0084"
+     ry="0.049126346"
+     x="59.9338"
+     y="-20.114719"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect354"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="60.111"
-     y="-30.0028"
+     ry="0.049126346"
+     x="59.9338"
+     y="-30.038239"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect358"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="60.111"
-     y="-39.9972"
+     ry="0.049126346"
+     x="59.9338"
+     y="-39.961758"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect362"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="60.111"
-     y="-49.9916"
+     ry="0.049126346"
+     x="59.9338"
+     y="-49.885277"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect366"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.9944019"
-     height="9.9944019"
+     width="9.923521"
+     height="9.923521"
      rx="0"
-     ry="0.049477238"
-     x="60.111"
-     y="-59.986"
+     ry="0.049126346"
+     x="59.9338"
+     y="-59.8088"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect370"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49645397;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <g
-     transform="matrix(0.20272852,0,0,0.20336849,21.509362,3.0769782)"
+     transform="matrix(0.20129077,0,0,0.20192619,21.605037,3.304265)"
      id="g374"
-     style="fill:#000000;fill-opacity:1;stroke:none">
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
     <path
        d="m 239.02346,280.54304 -49.22956,0 0,49.09124 c 0,0 51.45032,3.62683 49.22956,-49.09124 z"
        id="path376"
-       style="fill:#000000;fill-opacity:1;stroke:none" />
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.46246886;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
 </svg>

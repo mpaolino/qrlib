@@ -26,67 +26,67 @@
     </rdf:RDF>
   </metadata>
   <path
-     d="m 0.03373906,10.00934 9.97279194,0 0,-9.97616614 c 0,0 -10.42266755,-0.73703286 -9.97279194,9.97616614 z"
+     d="m 0.27908591,10.09152 9.80930109,0 0,-9.81262042 c 0,0 -10.2518016,-0.72495055 -9.80930109,9.81262042 z"
      id="path120"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.986948"
-     height="9.986948"
+     width="9.823225"
+     height="9.823226"
      rx="0"
-     ry="0.049440339"
-     x="-19.993481"
-     y="-10.02892"
+     ry="0.048629832"
+     x="-19.911615"
+     y="-10.110779"
      transform="scale(-1,-1)"
      id="rect124"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <path
-     d="m 20.01306,0.05612906 0,9.97279194 9.976166,0 c 0,0 0.737033,-10.42266755 -9.976166,-9.97279194 z"
+     d="m 19.930872,0.30147781 0,9.80930219 9.81262,0 c 0,0 0.724951,-10.25180281 -9.81262,-9.80930219 z"
      id="path130"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.986948"
-     height="9.986948"
+     width="9.823226"
+     height="9.823225"
      rx="0"
-     ry="0.049440339"
-     x="10.02892"
-     y="-10.00653"
+     ry="0.048629832"
+     x="10.110779"
+     y="-10.088387"
      transform="matrix(0,1,-1,0,0,0)"
      id="rect188"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.986948"
-     height="9.986948"
+     width="9.823225"
+     height="9.823226"
      rx="0"
-     ry="0.049440339"
-     x="10.00653"
-     y="10.02892"
+     ry="0.048629832"
+     x="10.088387"
+     y="10.110779"
      id="rect192"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.986948"
-     height="9.986948"
+     width="9.823226"
+     height="9.823225"
      rx="0"
-     ry="0.049440339"
-     x="-20.015869"
-     y="19.993481"
+     ry="0.048629832"
+     x="-19.934006"
+     y="19.911615"
      transform="matrix(0,-1,1,0,0,0)"
      id="rect196"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <path
-     d="m 9.9869495,29.988661 0,-9.972792 -9.97616564,0 c 0,0 -0.73703286,10.422668 9.97616564,9.972792 z"
+     d="m 10.069127,29.743307 0,-9.809302 -9.81261997,0 c 0,0 -0.72495019,10.251803 9.81261997,9.809302 z"
      id="path250"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.986948"
-     height="9.986948"
+     width="9.823225"
+     height="9.823226"
      rx="0"
-     ry="0.049440339"
-     x="10.00653"
-     y="20.015869"
+     ry="0.048629832"
+     x="10.088387"
+     y="19.934006"
      id="rect254"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <path
-     d="m 29.966271,20.03545 -9.972792,0 0,9.976166 c 0,0 10.422668,0.737033 9.972792,-9.976166 z"
+     d="m 29.720914,19.953265 -9.809302,0 0,9.81262 c 0,0 10.251803,0.72495 9.809302,-9.81262 z"
      id="path260"
-     style="fill:#000000;fill-opacity:1;stroke:none" />
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180314;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
 </svg>
