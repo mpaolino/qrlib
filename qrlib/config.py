@@ -62,6 +62,7 @@ SHAPE_GROUP = '{http://www.w3.org/2000/svg}g'
 
 BASIC_SHAPES = ['{http://www.w3.org/2000/svg}rect',
                 '{http://www.w3.org/2000/svg}circle',
-                '{http://www.w3.org/2000/svg}ellipse']
+                '{http://www.w3.org/2000/svg}ellipse',
+                '{http://www.w3.org/2000/svg}path']
 
 QUIET_ZONE = 4  # In blocks

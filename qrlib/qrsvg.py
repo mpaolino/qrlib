@@ -125,7 +125,6 @@ def _two_touching(top_left=False, top_center=False, top_right=False,
                   bottom_left=False, bottom_center=False,
                   bottom_right=False):
 
-    #return ('2b.svg')
     # First the cross
     if top_center and bottom_center:
         return ('1b3b.svg', 0)
@@ -162,7 +161,6 @@ def _three_touching(top_left=False, top_center=False, top_right=False,
                     bottom_left=False, bottom_center=False,
                     bottom_right=False):
 
-    #return ('2b.svg')
     # First the cross
     if middle_left and top_center and middle_right:
         return ('2a1b2c.svg', 0)
@@ -224,7 +222,7 @@ def _four_touching(top_left=False, top_center=False, top_right=False,
                                bottom_right=False)
     if cross.count(True) == 2:
         # Two in the cross, let's delegate.
-        return _three_touching(top_left=False, top_center=top_center,
+        return _two_touching(top_left=False, top_center=top_center,
                                top_right=False, middle_left=middle_left,
                                middle_right=middle_right,
                                bottom_left=False,
@@ -242,12 +240,35 @@ def _four_touching(top_left=False, top_center=False, top_right=False,
     return ('2b.svg', 0)
 
 
-def _five_touching(top_left=False, top_center=False, top_right=False,
-                   middle_left=False, middle_right=False,
-                   bottom_left=False, bottom_center=False,
-                   bottom_right=False):
+def _5plus_touching(top_left=False, top_center=False, top_right=False,
+                    middle_left=False, middle_right=False,
+                    bottom_left=False, bottom_center=False,
+                    bottom_right=False):
 
     cross = [top_center, middle_right, bottom_center, middle_left]
+
+    if cross.count(True) == 4:
+        return _four_touching(top_left=False, top_center=top_center,
+                              top_right=False, middle_left=middle_left,
+                              middle_right=middle_right,
+                              bottom_left=False,
+                              bottom_center=bottom_center,
+                              bottom_right=False)
+ 
+    if cross.count(True) == 3:
+        return _three_touching(top_left=False, top_center=top_center,
+                               top_right=False, middle_left=middle_left,
+                               middle_right=middle_right,
+                               bottom_left=False,
+                               bottom_center=bottom_center,
+                               bottom_right=False)
+    if cross.count(True) == 2:
+        return _two_touching(top_left=False, top_center=top_center,
+                             top_right=False, middle_left=middle_left,
+                             middle_right=middle_right,
+                             bottom_left=False,
+                             bottom_center=bottom_center,
+                             bottom_right=False)
 
     if cross.count(True) == 1:
         return _one_touching(top_left=False, top_center=top_center,
@@ -256,24 +277,9 @@ def _five_touching(top_left=False, top_center=False, top_right=False,
                              bottom_left=False,
                              bottom_center=bottom_center,
                              bottom_right=False)
-    if cross.count(True) == 2:
-        return _two_touching(top_left=False, top_center=top_center,
-                             top_right=False, middle_left=middle_left,
-                             middle_right=middle_right,
-                             bottom_left=False,
-                             bottom_center=bottom_center,
-                             bottom_right=False)
-    if cross.count(True) == 3:
-        return _three_touching(top_left=False, top_center=top_center,
-                               top_right=False, middle_left=middle_left,
-                               middle_right=middle_right,
-                               bottom_left=False,
-                               bottom_center=bottom_center,
-                               bottom_right=False)
-    if cross.count(True) == 4:
-        return ('2a1b2c3b.svg', 0)
 
-    raise Exception('Five touching node, none in cross section, impossible')
+    raise Exception('Five or more touching node, none in cross section,' +\
+                    'impossible')
 
 
 def _choose_module(top_left=False, top_center=False, top_right=False,
@@ -315,15 +321,13 @@ def _choose_module(top_left=False, top_center=False, top_right=False,
                               bottom_left=bottom_left,
                               bottom_center=bottom_center,
                               bottom_right=bottom_right)
-    if how_many == 5:
-        return _five_touching(top_left=top_left, top_center=top_center,
-                              top_right=top_right, middle_left=middle_left,
-                              middle_right=middle_right,
-                              bottom_left=bottom_left,
-                              bottom_center=bottom_center,
-                              bottom_right=bottom_right)
-    if how_many > 5:
-        return ('2a1b2c3b.svg', 0)
+    if how_many >= 5:
+        return _5plus_touching(top_left=top_left, top_center=top_center,
+                               top_right=top_right, middle_left=middle_left,
+                               middle_right=middle_right,
+                               bottom_left=bottom_left,
+                               bottom_center=bottom_center,
+                               bottom_right=bottom_right)
 
 
 def _qrcode_to_svg(qrcode, style=None, color='#000000'):
@@ -352,7 +356,6 @@ def _qrcode_to_svg(qrcode, style=None, color='#000000'):
             bottom_center = qrcode.isDark(row + 1, column)
             bottom_right = qrcode.isDark(row + 1, column + 1)
 
-            
             shape = _choose_module(top_left=top_left,
                                    top_center=top_center,
                                    top_right=top_right,
