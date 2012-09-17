@@ -6,10 +6,10 @@ url = 'http://ideal.com.uy'
 
 qrcode = qrsvg.generate_QR_for_url(url, 
                                    style_color='#193CD4',
-                                   style='default',
-                                   inner_eye_style='default',
+                                   style='sieve',
+                                   inner_eye_style='sieve',
                                    inner_eye_color='#193CD4',
-                                   outer_eye_style='default',
+                                   outer_eye_style='sieve',
                                    outer_eye_color='#1466C4')
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
