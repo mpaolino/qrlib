@@ -5,10 +5,11 @@ from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
 
 import re
 import cStringIO
+import copy
 #import ipdb
 
 
-def _get_style_dict(style):
+def _get_style_dict(style='default'):
     '''
         Iterates over STYLE_FILES for the defined style and builds
         a dictionary with it's shape groups
@@ -31,7 +32,7 @@ def _get_style_dict(style):
     return style_dict
 
 
-def _get_eyes_dict(style):
+def _get_eyes_dict(style='default'):
     '''
         Iterates over EYE_STYLES for the defined style and builds
         a dictionary with it's shape groups
@@ -108,10 +109,10 @@ def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict='default',
         translate = translate + " " + rotate
 
     new_container = et.SubElement(final_svg, 'g', transform=translate)
-
     for elem in style_dict[shape]:
-        _set_attrib(elem, color=color)
-        new_container.append(elem)
+        dup_elem = copy.copy(elem)
+        _set_attrib(dup_elem, color=color)
+        new_container.append(dup_elem)
 
 
 def _one_touching(top_left=False, top_center=False, top_right=False,
@@ -455,6 +456,7 @@ def _is_inner_eye_position(row, column, qr_size):
 def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                     inner_eye_style='default', inner_eye_color='#000000',
                     outer_eye_style='default', outer_eye_color='#000000'):
+
     style_dict = None
     inner_eyes_dict = None
     outer_eyes_dict = None

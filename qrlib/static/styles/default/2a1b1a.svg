@@ -15,7 +15,7 @@
    viewBox="0 0 9.9999999 10"
    id="svg2"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="2b.svg">
+   sodipodi:docname="2a1b1a.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -30,12 +30,13 @@
      id="namedview6"
      showgrid="false"
      inkscape:zoom="23.6"
-     inkscape:cx="0.070125373"
+     inkscape:cx="1.1545256"
      inkscape:cy="5"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:object-paths="true" />
   <defs
      id="defs4">
     <marker
@@ -64,13 +65,9 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <rect
-     width="10"
-     height="10"
-     rx="0"
-     ry="0.049504954"
-     x="-5.0000001e-08"
-     y="0"
-     id="rect3011"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none;stroke-linejoin:miter;stroke-linecap:butt;opacity:1" />
+  <path
+     id="rect2984-6"
+     transform="matrix(0,-1,1,0,0,0)"
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
+     d="m -9.964759,-0.91525418 10.90293146,0 c 0.026888,0 0.0485343,0.0216463 0.0485343,0.0485343 l 0,0.90293146 c 0,0.02688799 -0.0216463,0.04853427 -0.0485343,0.04853427 l -10.90293146,0 c -0.026888,0 -0.048534,-0.02164628 -0.048534,-0.04853427 l 0,-0.90293146 c 0,-0.026888 0.021646,-0.0485343 0.048534,-0.0485343 z m 10.95146573,0.9637884 0,9.90293148 c 0,0.026888 -0.0216463,0.048534 -0.0485343,0.048534 l -0.90293146,0 c -0.02688798,0 -0.04853427,-0.021646 -0.04853427,-0.048534 l 0,-9.90293148 c 0,-0.02688799 0.02164629,-0.04853427 0.04853427,-0.04853427 l 0.90293146,0 c 0.026888,0 0.0485343,0.02164628 0.0485343,0.04853427 z M 0,-5.0000001e-8 0,10 l -10,0 0,-10.00000005 z" />
 </svg>

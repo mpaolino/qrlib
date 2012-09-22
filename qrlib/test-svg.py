@@ -5,15 +5,15 @@ import pyqrcode
 url = 'http://ideal.com.uy'
 
 qrcode = qrsvg.generate_QR_for_url(url, 
-                                   style_color='#193CD4',
-                                   style='sieve',
-                                   inner_eye_style='sieve',
+                                   style_color='green',
+                                   style='classic',
+                                   inner_eye_style='classic',
                                    inner_eye_color='#193CD4',
-                                   outer_eye_style='sieve',
+                                   outer_eye_style='classic',
                                    outer_eye_color='#1466C4')
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
 f.close()
 
-pil = pyqrcode.MakeQRImage(url)
-pil.save('test.gif', 'GIF')
+#pil = pyqrcode.MakeQRImage(url)
+#pil.save('test.gif', 'GIF')

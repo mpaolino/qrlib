@@ -7,10 +7,35 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="30.022392"
    height="30.022392"
-   id="svg5816">
+   id="svg5816"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="inner.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
+     id="namedview14"
+     showgrid="false"
+     inkscape:object-paths="true"
+     inkscape:zoom="16"
+     inkscape:cx="12.091445"
+     inkscape:cy="13.251649"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5816" />
   <defs
      id="defs5818" />
   <metadata
@@ -21,72 +46,16 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <path
-     d="m 0.27908591,10.091519 9.80930109,0 0,-9.81261984 c 0,0 -10.25180159,-0.72495021 -9.80930109,9.81261984 z"
-     id="path120"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <rect
-     width="9.823226"
-     height="9.823226"
-     rx="0"
-     ry="0.048629832"
-     x="-19.911613"
-     y="-10.110779"
-     transform="scale(-1,-1)"
-     id="rect124"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <path
-     d="m 19.930872,0.30147804 0,9.80930096 9.81262,0 c 0,0 0.724951,-10.25180147 -9.81262,-9.80930096 z"
-     id="path130"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <rect
-     width="9.823226"
-     height="9.823226"
-     rx="0"
-     ry="0.048629828"
-     x="10.110779"
-     y="-10.088387"
-     transform="matrix(0,1,-1,0,0,0)"
-     id="rect188"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <rect
-     width="9.823226"
-     height="9.823226"
-     rx="0"
-     ry="0.048629832"
-     x="10.088387"
-     y="10.110779"
-     id="rect192"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <rect
-     width="9.823226"
-     height="9.823226"
-     rx="0"
-     ry="0.048629828"
-     x="-19.934006"
-     y="19.911613"
-     transform="matrix(0,-1,1,0,0,0)"
-     id="rect196"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <path
-     d="m 10.069127,29.743306 0,-9.809301 -9.81261996,0 c 0,0 -0.7249502,10.251802 9.81261996,9.809301 z"
-     id="path250"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <rect
-     width="9.823226"
-     height="9.823226"
-     rx="0"
-     ry="0.048629832"
-     x="10.088387"
-     y="19.934006"
-     id="rect254"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  <path
-     d="m 29.720914,19.953265 -9.809302,0 0,9.81262 c 0,0 10.251803,0.72495 9.809302,-9.81262 z"
-     id="path260"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.49180317;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+     style="fill:#000000;fill-opacity:1;stroke:none"
+     id="rect3802"
+     width="30"
+     height="30"
+     x="0"
+     y="0.022392273"
+     ry="8.9611483" />
 </svg>
