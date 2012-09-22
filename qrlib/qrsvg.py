@@ -2,6 +2,8 @@ import pyqrcode
 from xml.etree import cElementTree as et
 from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
                     QUIET_ZONE, EYE_STYLE_FILES)
+from validation import (color_validation, ec_level_validation,
+                        qrsize_validation)
 
 import re
 import cStringIO
@@ -67,13 +69,11 @@ def _set_attrib(one_elem, color='#000000'):
         elem_style = one_elem.attrib['style']
         elem_style = re.sub(r'fill:\#\d+;', 'fill:%s;' % color, elem_style)
         elem_style = re.sub(r'stroke:\#\d+;', 'stroke:%s;' % color, elem_style)
-        #elem_style = re.sub(r'stroke-width:\#\d+;', 'stroke-with:0.5;',
-        #                        elem_style)
         one_elem.attrib['style'] = elem_style
 
 
 def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict='default',
-                                                            color='#000000'):
+                                         color='#000000', block_scale=1.0):
     '''
         Inserts svg shape in the appropiate place, with selected style
         and fill color
@@ -87,26 +87,36 @@ def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict='default',
         shape = shape_w_rotation
         rotation = 0
 
-    bound = QUIET_ZONE * BLOCK_SIZE
+    block_size = BLOCK_SIZE
+    if block_scale != 1 and block_scale > 0:
+        block_size = BLOCK_SIZE * block_scale
+    else:
+        raise Exception('Block scale \'%s\' not valid' % (block_scale))
+
+    bound = QUIET_ZONE * (block_size)
     if style_dict == None:
-        et.SubElement(final_svg, 'rect', x=str((x * BLOCK_SIZE) + bound),
-                      y=str((y * BLOCK_SIZE) + bound), width=str(BLOCK_SIZE),
-                      height=str(BLOCK_SIZE), fill=color)
+        et.SubElement(final_svg, 'rect', x=str((x * block_size) + bound),
+                      y=str((y * block_size) + bound), width=str(block_size),
+                      height=str(block_size), fill=color)
         return
 
     translate = "translate( %(x)s %(y)s )" % \
                 {
-                  'x': str((x * BLOCK_SIZE) + bound),
-                  'y': str((y * BLOCK_SIZE) + bound)
+                  'x': str((x * block_size) + bound),
+                  'y': str((y * block_size) + bound)
                 }
 
     if int(rotation) != 0:
         rotate = "rotate(%(angle)s, %(center)s, %(center)s)" % \
                 {
                  'angle': str(rotation),
-                 'center': str((float(BLOCK_SIZE) / 2))
+                 'center': str((float(block_size) / 2))
                 }
         translate = translate + " " + rotate
+
+    if block_scale != 1 and block_scale > 0:
+        scale = "scale(%s)" % (str(block_scale))
+        translate = translate + " " + scale
 
     new_container = et.SubElement(final_svg, 'g', transform=translate)
     for elem in style_dict[shape]:
@@ -455,7 +465,8 @@ def _is_inner_eye_position(row, column, qr_size):
 
 def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                     inner_eye_style='default', inner_eye_color='#000000',
-                    outer_eye_style='default', outer_eye_color='#000000'):
+                    outer_eye_style='default', outer_eye_color='#000000',
+                    size=200):
 
     style_dict = None
     inner_eyes_dict = None
@@ -468,8 +479,14 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
         inner_eyes_dict = _get_eyes_dict(inner_eye_style)
 
     module_count = qrcode.getModuleCount()   # Number of rows/columns of the QR
+    # size             scale
+    # 10px               1
+    # new_block_size     x
+    new_block_size = float(size) / (module_count + (QUIET_ZONE * 2))
+    block_scale = new_block_size / BLOCK_SIZE
     # Width of the SVG QR code
-    width = str((module_count + (QUIET_ZONE * 2)) * BLOCK_SIZE)
+    #width = str((module_count + (QUIET_ZONE * 2)) * BLOCK_SIZE)
+    width = str(size)
     height = width                          # Height of the SVG QR code
     svg_doc = et.Element('svg', width=width, height=height, version='1.1',
                          xmlns='http://www.w3.org/2000/svg')
@@ -494,7 +511,7 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                                                          module_count):
                 _insert_shape(column, row, ('outer.svg', 0), svg_doc,
                               style_dict=outer_eyes_dict,
-                              color=outer_eye_color)
+                              color=outer_eye_color, block_scale=block_scale)
                 continue
 
             # Let's check if there's a style for inner eye and insert the shape
@@ -502,7 +519,7 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                                                          module_count):
                 _insert_shape(column, row, ('inner.svg', 0), svg_doc,
                               style_dict=inner_eyes_dict,
-                              color=inner_eye_color)
+                              color=inner_eye_color, block_scale=block_scale)
                 continue
 
             if outer_eyes_dict and _within_outer_eye(row, column,
@@ -523,7 +540,8 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                                    bottom_right=bottom_right)
 
             _insert_shape(column, row, shape, svg_doc,
-                          style_dict=style_dict, color=style_color)
+                          style_dict=style_dict, color=style_color,
+                          block_scale=block_scale)
 
     filelike = cStringIO.StringIO()
     filelike.write('<?xml version=\"1.0\" standalone=\"no\"?>\n')
@@ -532,29 +550,34 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
     filelike.write(et.tostring(svg_doc))
     return filelike
 
+def string_to_eclevel(level):
+    if level == 'L':
+        return pyqrcode.QRErrorCorrectLevel.L
+    elif level == 'M':
+        return pyqrcode.QRErrorCorrectLevel.M
+    elif level == 'Q':
+        return pyqrcode.QRErrorCorrectLevel.Q
+    elif level == 'H':
+        return pyqrcode.QRErrorCorrectLevel.H
+    else:
+        return pyqrcode.QRErrorCorrectLevel.Q
 
-def _validate_color(color):
-    string_colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
-                     'lime', 'maroon', 'navy', 'olive', 'purple', 'red',
-                     'silver', 'teal', 'white', 'yellow']
+def generate_QR_for_url(text, eclevel='Q', style='default',
+                        style_color='#000000', inner_eye_style='default',
+                        inner_eye_color='#000000', outer_eye_style='default',
+                        outer_eye_color='#000000', size=200):
 
-    if color in string_colors or re.match('\#[0-9A-Fa-f]{6}', color):
-        return True
-    raise Exception('Invalid color \'%s\'' % (color))
+    ec_level_validation(eclevel)
+    color_validation(style_color)
+    color_validation(inner_eye_color)
+    color_validation(outer_eye_color)
+    qrsize_validation(size)
 
-
-def generate_QR_for_url(url, style='default', style_color='#000000',
-                        inner_eye_style='default', inner_eye_color='#000000',
-                        outer_eye_style='default', outer_eye_color='#000000'):
-
-    _validate_color(style_color)
-    _validate_color(inner_eye_color)
-    _validate_color(outer_eye_color)
-
-    qr_code = pyqrcode.MakeQR(url,
-                              errorCorrectLevel=pyqrcode.QRErrorCorrectLevel.Q)
+    qr_code = pyqrcode.MakeQR(text,
+                              errorCorrectLevel=string_to_eclevel(eclevel))
     return _qrcode_to_svg(qr_code, style=style, style_color=style_color,
                           inner_eye_style=inner_eye_style,
                           inner_eye_color=inner_eye_color,
                           outer_eye_style=outer_eye_style,
-                          outer_eye_color=outer_eye_color)
+                          outer_eye_color=outer_eye_color,
+                          size=size)

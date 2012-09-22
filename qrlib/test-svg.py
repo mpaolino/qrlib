@@ -10,7 +10,8 @@ qrcode = qrsvg.generate_QR_for_url(url,
                                    inner_eye_style='classic',
                                    inner_eye_color='#193CD4',
                                    outer_eye_style='classic',
-                                   outer_eye_color='#1466C4')
+                                   outer_eye_color='#1466C4',
+                                   size=300)
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
 f.close()

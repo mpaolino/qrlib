@@ -11,7 +11,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.utils import ImageReader
 from validation import (format_validation, application_validation, 
-                        appsize_validation, language_validation)
+                        appsize_validation, language_validation,
+                        color_validation, ec_level_validation)
 import cStringIO
 import Image
 # Monkey patch ReportLab 
@@ -28,7 +29,7 @@ import ipdb
 def distance(p0, p1):
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
-def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
+def generate_qr_file(qr_svg, language='es', qr_format='PDF', app='interior',
                      app_size='small', decorate=True):
     """
         Returns a QR of the provided text in the format and size specified
@@ -103,6 +104,11 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
                                            barHeight=qr_height,
                                            barLevel=ec_level,
                                            barBorder=4)
+    qrsvg_draw = qrsvg.generate_QR_for_url(text, barWidth=qr_width,
+                                           barHeight=qr_height,
+                                           ec_level=ec_level,
+                                           barBorder=4)
+
 
     if qr_format == 'PDF':
         # Center qr draw on first half of the page

@@ -4,6 +4,7 @@ from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
                     LOGO_IMAGE_PATH, FOOTER_TEXT_FONT, FOOTER_TEXT_COLOR,
                     FOOTER_URL, TEXT_TRANS)
+import re
 
 
 def width_validation(width):
@@ -50,6 +51,22 @@ def language_validation(language):
             language.lower() not in ('es', 'en', 'br'):
         raise Exception('Unrecognized QR footer language')
     return True
+
+def color_validation(color):
+    string_colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
+                     'lime', 'maroon', 'navy', 'olive', 'purple', 'red',
+                     'silver', 'teal', 'white', 'yellow']
+
+    if color in string_colors or re.match('\#[0-9A-Fa-f]{6}', color):
+        return True
+    raise Exception('Invalid color \'%s\'' % (color))
+
+def qrsize_validation(size):
+    if not isinstance(size, (float, int)) or size < 50:
+        raise Exception('Unrecognized QR size \'%s\', must be > 50' % \
+                        (str(size)))
+    return True
+
 
 def validate_all_config():    
     width_validation(INTERIOR_SMALL['width'])
