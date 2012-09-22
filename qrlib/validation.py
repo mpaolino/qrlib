@@ -62,9 +62,9 @@ def color_validation(color):
     raise Exception('Invalid color \'%s\'' % (color))
 
 def qrsize_validation(size):
-    if not isinstance(size, (float, int)) or size < 50:
-        raise Exception('Unrecognized QR size \'%s\', must be > 50' % \
-                        (str(size)))
+    if not isinstance(size, (float, int)) or size < 100 or size > 1000:
+        raise Exception('Unrecognized QR size \'%s\'' % (str(size)) + \
+                        ', size must be > 100 and < 1000')
     return True
 
 

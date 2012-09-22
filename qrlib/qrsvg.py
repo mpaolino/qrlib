@@ -562,10 +562,10 @@ def string_to_eclevel(level):
     else:
         return pyqrcode.QRErrorCorrectLevel.Q
 
-def generate_QR_for_url(text, eclevel='Q', style='default',
-                        style_color='#000000', inner_eye_style='default',
-                        inner_eye_color='#000000', outer_eye_style='default',
-                        outer_eye_color='#000000', size=200):
+def generate_QR_for_text(text, eclevel='Q', style='default',
+                         style_color='#000000', inner_eye_style='default',
+                         inner_eye_color='#000000', outer_eye_style='default',
+                         outer_eye_color='#000000', size=200):
 
     ec_level_validation(eclevel)
     color_validation(style_color)
