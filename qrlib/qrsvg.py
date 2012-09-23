@@ -466,7 +466,7 @@ def _is_inner_eye_position(row, column, qr_size):
 def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                     inner_eye_style='default', inner_eye_color='#000000',
                     outer_eye_style='default', outer_eye_color='#000000',
-                    size=200):
+                    bg_color='#FFFFFF', size=200):
 
     style_dict = None
     inner_eyes_dict = None
@@ -490,6 +490,11 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
     height = width                          # Height of the SVG QR code
     svg_doc = et.Element('svg', width=width, height=height, version='1.1',
                          xmlns='http://www.w3.org/2000/svg')
+
+    # Background square
+    et.SubElement(svg_doc, 'rect', x='0', y='0', width=width, height=height,
+                  fill=bg_color)
+ 
     for row in range(module_count):
         for column in range(module_count):
             if not qrcode.isDark(row, column):
@@ -565,12 +570,14 @@ def string_to_eclevel(level):
 def generate_QR_for_text(text, eclevel='Q', style='default',
                          style_color='#000000', inner_eye_style='default',
                          inner_eye_color='#000000', outer_eye_style='default',
-                         outer_eye_color='#000000', size=200):
+                         outer_eye_color='#000000', bg_color='#FFFFFF',
+                         size=200):
 
     ec_level_validation(eclevel)
     color_validation(style_color)
     color_validation(inner_eye_color)
     color_validation(outer_eye_color)
+    color_validation(bg_color)
     qrsize_validation(size)
 
     qr_code = pyqrcode.MakeQR(text,
@@ -580,4 +587,4 @@ def generate_QR_for_text(text, eclevel='Q', style='default',
                           inner_eye_color=inner_eye_color,
                           outer_eye_style=outer_eye_style,
                           outer_eye_color=outer_eye_color,
-                          size=size)
+                          size=size, bg_color=bg_color)
