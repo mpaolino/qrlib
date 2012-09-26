@@ -3,12 +3,11 @@ from xml.etree import cElementTree as et
 from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
                     QUIET_ZONE, EYE_STYLE_FILES)
 from validation import (color_validation, ec_level_validation,
-                        qrsize_validation)
+                        size_validation)
 
 import re
 import cStringIO
 import copy
-#import ipdb
 
 
 def _get_style_dict(style='default'):
@@ -494,7 +493,7 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
     # Background square
     et.SubElement(svg_doc, 'rect', x='0', y='0', width=width, height=height,
                   fill=bg_color)
- 
+
     for row in range(module_count):
         for column in range(module_count):
             if not qrcode.isDark(row, column):
@@ -555,6 +554,7 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
     filelike.write(et.tostring(svg_doc))
     return filelike
 
+
 def string_to_eclevel(level):
     if level == 'L':
         return pyqrcode.QRErrorCorrectLevel.L
@@ -567,21 +567,22 @@ def string_to_eclevel(level):
     else:
         return pyqrcode.QRErrorCorrectLevel.Q
 
+
 def generate_QR_for_text(text, eclevel='Q', style='default',
                          style_color='#000000', inner_eye_style='default',
                          inner_eye_color='#000000', outer_eye_style='default',
                          outer_eye_color='#000000', bg_color='#FFFFFF',
-                         size=200):
+                         size=200, ec_level='Q'):
 
-    ec_level_validation(eclevel)
+    ec_level_validation(ec_level)
     color_validation(style_color)
     color_validation(inner_eye_color)
     color_validation(outer_eye_color)
     color_validation(bg_color)
-    qrsize_validation(size)
-
+    size_validation(size)
+    ec_level_validation(ec_level)
     qr_code = pyqrcode.MakeQR(text,
-                              errorCorrectLevel=string_to_eclevel(eclevel))
+                              errorCorrectLevel=string_to_eclevel(ec_level))
     return _qrcode_to_svg(qr_code, style=style, style_color=style_color,
                           inner_eye_style=inner_eye_style,
                           inner_eye_color=inner_eye_color,

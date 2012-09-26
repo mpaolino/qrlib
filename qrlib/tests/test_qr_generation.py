@@ -15,11 +15,9 @@ class GeneratePDFTestCase(unittest.TestCase):
         pass
 
     def qr_image_format(self, img_format):
-        generated_img = generate_qr_file('JUST TEXT', qr_format=img_format)
-        #pdb.set_trace()
+        generated_img = generate_qr_file('JUST SOME TEXT', qr_format=img_format)
         generated_img.seek(0)
         pil = Image.open(generated_img).convert('L')
-        #pil = Image.open(generated_gif)
         width, height = pil.size
         raw = pil.tostring()
         image = zbar.Image(width, height, 'Y800', raw)
@@ -28,16 +26,16 @@ class GeneratePDFTestCase(unittest.TestCase):
         scanner.scan(image)
         self.assertEqual(len(image.symbols), 1)
         for symbol in image:
-            self.assertEqual(symbol.data,'JUST TEXT')
+            self.assertEqual(symbol.data,'JUST SOME TEXT')
 
-    def test_gif(self):
-        self.qr_image_format('GIF')
+#    def test_gif(self):
+#        self.qr_image_format('GIF')
 
-    def test_png(self):
-        self.qr_image_format('PNG')
+#    def test_png(self):
+#        self.qr_image_format('PNG')
 
-    def test_jpg(self):
-        self.qr_image_format('JPG')
+#    def test_jpg(self):
+#        self.qr_image_format('JPG')
 
     def test_pdf(self):
         generated_pdf = generate_qr_file(u'JUST TEXT', qr_format='PDF')

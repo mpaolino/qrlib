@@ -14,24 +14,17 @@ import imp
 
 
 try:
-    from .validation import (width_validation, height_validation,
-                             ec_level_validation, validate_all_config,
-                             logo_margin_validation)
+    from .validation import (size_validation, ec_level_validation,
+                             validate_all_config, logo_margin_validation)
     from .config import *
 
     #validate_all_config()    
-    width_validation(INTERIOR_SMALL['width'])
-    width_validation(INTERIOR_MEDIUM['width'])
-    width_validation(INTERIOR_LARGE['width'])
-    width_validation(EXTERIOR_SMALL['width'])
-    width_validation(EXTERIOR_MEDIUM['width'])
-    width_validation(EXTERIOR_LARGE['width'])
-    height_validation(INTERIOR_SMALL['height'])
-    height_validation(INTERIOR_MEDIUM['height'])
-    height_validation(INTERIOR_LARGE['height'])
-    height_validation(EXTERIOR_SMALL['height'])
-    height_validation(EXTERIOR_MEDIUM['height'])
-    height_validation(EXTERIOR_LARGE['height'])
+    size_validation(INTERIOR_SMALL['size'])
+    size_validation(INTERIOR_MEDIUM['size'])
+    size_validation(INTERIOR_LARGE['size'])
+    size_validation(EXTERIOR_SMALL['size'])
+    size_validation(EXTERIOR_MEDIUM['size'])
+    size_validation(EXTERIOR_LARGE['size'])
     ec_level_validation(INTERIOR_SMALL['error_correction'])
     ec_level_validation(INTERIOR_MEDIUM['error_correction'])
     ec_level_validation(INTERIOR_LARGE['error_correction'])

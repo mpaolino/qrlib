@@ -21,39 +21,35 @@ FOOTER_URL = 'http://cuadraditos.uy'
 
 # 20 block_pixels = 420x420 px = 2.33x2.33 inches = 5.92x5.92 cm
 # 5 border_blocks = 100px
-INTERIOR_SMALL = {'width': 150,
-                  'height': 150,
-                  'error_correction': 'M'}
+INTERIOR_SMALL = {'size': 150,
+                  'error_correction': 'L'}
 
 # 40 block_pixels = 840x840px = 4.66x4.66 inches = 11.84x11.84 cm
 # 6 border_blocks = 240px
-INTERIOR_MEDIUM = {'width': 300,
-                   'height': 300,
+INTERIOR_MEDIUM = {'size': 300,
                    'error_correction': 'M'}
 
 # 80 block_pixels = 1680x1680px = 9.33x9.33 inches = 23.7x23.7 cm
 # 6 border_blocks = 480px
-INTERIOR_LARGE = {'width': 400,
-                  'height': 400,
+INTERIOR_LARGE = {'size': 400,
                   'error_correction': 'M'}
 
-EXTERIOR_SMALL = {'width': 150,
-                  'height': 150,
+EXTERIOR_SMALL = {'size': 150,
                   'error_correction': 'H'}
 
-EXTERIOR_MEDIUM = {'width': 300,
-                   'height': 300,
+EXTERIOR_MEDIUM = {'size': 300,
                    'error_correction': 'H'}
 
-EXTERIOR_LARGE = {'width': 400,
-                  'height': 400,
+EXTERIOR_LARGE = {'size': 400,
                   'error_correction': 'H'}
 
-BLOCK_SIZE = 10  # In pixels, svg style files must be BLOCK_SIZExBLOCK_SIZE size
+BLOCK_SIZE = 10  # In pixels, svg style files must be BLOCK_SIZExBLOCK_SIZE
+
+QUIET_ZONE = 4  # In blocks
 
 LIB_ROOT = dirname(abspath(__file__))
 FOOTER_TEXT_FONT = LIB_ROOT + "/fonts/" + FOOTER_FONT
-LOGO_IMAGE_PATH = LIB_ROOT + "/static/" + LOGO_IMAGE
+LOGO_IMAGE_PATH = LIB_ROOT + "/static/images/" + LOGO_IMAGE
 
 STYLE_FILES = ['2b.svg', '1b.svg', '1b3b.svg', '2a1b.svg',
                '2a1b1a.svg', '2a1b2c.svg', '2a1b2c3b.svg']
@@ -65,6 +61,5 @@ SHAPE_GROUP = '{http://www.w3.org/2000/svg}g'
 BASIC_SHAPES = ['{http://www.w3.org/2000/svg}rect',
                 '{http://www.w3.org/2000/svg}circle',
                 '{http://www.w3.org/2000/svg}ellipse',
-                '{http://www.w3.org/2000/svg}path']
-
-QUIET_ZONE = 4  # In blocks
+                '{http://www.w3.org/2000/svg}path',
+                '{http://www.w3.org/2000/svg}line']
