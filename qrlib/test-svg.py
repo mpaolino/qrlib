@@ -3,8 +3,8 @@ import pyqrcode
 import sys
 
 #url = 'http://ilskdjakldjlkadjlkajsdlkajdlkadeal.com.uyasdklajsdkljaasdasdasdasdasdasdasddaskjasdkjhaskdjhajkdhajksdhakjsdhakjshdakjsdhakjsdhaksjdhaskjdhskajdhaksjdhaskdjh'
-#url = 'http://cuadraditos.uy'
-url = 'http://a'
+url = 'http://cuadraditos.uy'
+#url = 'http://a'
 
 
 ec_level = 'L'
@@ -18,7 +18,7 @@ qrcode = qrsvg.generate_QR_for_text(url,
                                     inner_eye_color='#00D644',
                                     outer_eye_style='heavyround',
                                     outer_eye_color='#00D644',
-                                    size=100, ec_level=ec_level)
+                                    size=330, ec_level=ec_level)
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
 f.close()

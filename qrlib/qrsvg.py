@@ -256,11 +256,11 @@ def _four_touching(top_left=False, top_center=False, top_right=False,
     if cross.count(True) == 2:
         # Two in the cross, let's delegate.
         return _two_touching(top_left=False, top_center=top_center,
-                               top_right=False, middle_left=middle_left,
-                               middle_right=middle_right,
-                               bottom_left=False,
-                               bottom_center=bottom_center,
-                               bottom_right=False)
+                             top_right=False, middle_left=middle_left,
+                             middle_right=middle_right,
+                             bottom_left=False,
+                             bottom_center=bottom_center,
+                             bottom_right=False)
     elif cross.count(True) == 1:
         return _one_touching(top_left=False, top_center=top_center,
                              top_right=False, middle_left=middle_left,

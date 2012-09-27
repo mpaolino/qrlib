@@ -56,14 +56,9 @@ def language_validation(language):
 
 
 def color_validation(color):
-    string_colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
-                     'lime', 'maroon', 'navy', 'olive', 'purple', 'red',
-                     'silver', 'teal', 'white', 'yellow']
-
-    if color in string_colors or re.match('\#[0-9A-Fa-f]{6}', color):
-        return True
-    raise Exception('Invalid color \'%s\'' % (color))
-
+    if not re.match('\#[0-9A-Fa-f]{6}', color):
+        raise Exception('Invalid color \'%s\'' % (color))
+    return True
 
 def validate_all_config():
     size_validation(INTERIOR_SMALL['size'])

@@ -2,33 +2,151 @@
 # (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
-                    LOGO_IMAGE_PATH, LOGO_MARGIN, FOOTER_TEXT_FONT,
-                    FOOTER_TEXT_COLOR, FOOTER_URL, TEXT_TRANS)
+                    LOGO_IMAGE_PATH, LOGO_MARGIN, DASHFRAME_MARGIN,
+                    SCISSORS_IMAGE_PATH, PDF_CREATOR, PDF_AUTHOR,
+                    INSTRUCTIONS_IMAGE_PATH)
 import qrsvg
 import cairosvg
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.utils import ImageReader
-from validation import (format_validation, application_validation, 
+from reportlab.lib.colors import HexColor
+from validation import (format_validation, application_validation,
                         appsize_validation, language_validation,
-                        color_validation, ec_level_validation)
+                        ec_level_validation, size_validation)
 import cStringIO
 import Image
-# Monkey patch ReportLab 
+# Monkey patch ReportLab
 # http://stackoverflow.com/questions/2227493/reportlab-and-python-imaging-library-images-from-memory-issue
 import reportlab.lib.utils
-reportlab.lib.utils.Image= Image
-import math
-from xml.etree import cElementTree as et
-import re
+reportlab.lib.utils.Image = Image
 import ipdb
 
 
-def distance(p0, p1):
-    return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
+def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True, 
+             put_logo=True):
+    """
+        Receives a PIL image with a QR and generates a PDF output
+        in a filelike (StringIO)
+    """
+    (qr_width, qr_height) = qr_pil.size  # qr_width == qr_height, always
+    filelike = cStringIO.StringIO()
+    page_size = landscape(A4)
+    page_width, page_height = page_size
+    qr_canvas = canvas.Canvas(filelike, pagesize=page_size)
+
+    # Center qr draw on first half of the page
+    qr_draw_x = (page_width / 4) - (qr_width / 2)
+    qr_draw_y = (page_height / 2) - (qr_height / 2)
+    sq_width = qr_width + DASHFRAME_MARGIN
+    sq_height = qr_height + DASHFRAME_MARGIN
+    sq_draw_x = qr_draw_x - (DASHFRAME_MARGIN / 2)
+    sq_draw_y = qr_draw_y - (DASHFRAME_MARGIN / 2)
+
+    # Place dashed frame and QR PIL in the canvas
+    if frame:
+        qr_canvas.saveState()
+        qr_canvas.setDash((5, 2))
+        hexcolor = HexColor(bg_color)
+        r = hexcolor.red
+        g = hexcolor.green
+        b = hexcolor.blue
+        qr_canvas.setFillColorRGB(r, g, b)
+        qr_canvas.rect(x=sq_draw_x, y=sq_draw_y, width=sq_width,
+                       height=sq_height, fill=1)
+        qr_canvas.restoreState()
+
+        # Add the scissors to dashed frame
+        scissors = Image.open(SCISSORS_IMAGE_PATH)
+        scissors_width, scissors_height = scissors.size
+        scissors_x = sq_draw_x - scissors_width
+        qr_canvas.drawImage(SCISSORS_IMAGE_PATH, x=scissors_x, y=sq_draw_y,
+                            mask='auto')
+
+
+    imagereader = ImageReader(qr_pil)
+    qr_canvas.drawImage(imagereader, qr_draw_x, qr_draw_y)
+
+    #Get logo dimentions and place it inside dashed frame
+    if put_logo:
+        logo = Image.open(LOGO_IMAGE_PATH)
+        logo_width, logo_height = logo.size
+        logo_x = sq_draw_x + (sq_width / 2) - (logo_width / 2)
+        logo_y = sq_draw_y + LOGO_MARGIN
+        qr_canvas.drawImage(LOGO_IMAGE_PATH, x=logo_x, y=logo_y, mask='auto')
+    
+    if instructions:
+        #TODO: Paste the instructions in the PDF
+        instructions = Image.open(INSTRUCTIONS_IMAGE_PATH)
+        instruction_width, instruction_height = instructions.size
+        qr_canvas.drawImage(INSTRUCTIONS_IMAGE_PATH, x=page_width / 2,
+                            y=(page_height / 2) - (instruction_width / 2),
+                            mask='auto')
+
+    # Set some file properties and save canvas to filelike
+    qr_canvas.setPageCompression(pageCompression=1)
+    qr_canvas.setCreator(PDF_CREATOR)
+    qr_canvas.setAuthor(PDF_AUTHOR)
+    qr_canvas.save()
+
+    return filelike
+
+
+def _generate_pil(text, size='100', ec_level='L', style='default',
+                  style_color='#000000', inner_eye_style='default',
+                  inner_eye_color='#000000', outer_eye_style='default',
+                  outer_eye_color='#000000', bg_color='#FFFFFF'):
+
+    generated_svg = qrsvg.generate_QR_for_text(text, size=size,
+                                               ec_level=ec_level,
+                                               style=style,
+                                               style_color=style_color,
+                                               inner_eye_style=inner_eye_style,
+                                               inner_eye_color=inner_eye_color,
+                                               outer_eye_style=outer_eye_style,
+                                               outer_eye_color=outer_eye_color,
+                                               bg_color=bg_color)
+    converted_file = cStringIO.StringIO()
+    cairosvg.svg2png(generated_svg.getvalue(),
+                     write_to=converted_file)
+    converted_file.seek(0)
+    qr_pil = Image.open(converted_file)
+    return qr_pil
+
+
+def _gen_filelike(text, language='es', size=150, ec_level='L', qr_format='PDF',
+                  instructions=True, style='default', style_color='#000000',
+                  inner_eye_style='default', inner_eye_color='#000000',
+                  outer_eye_style='default', outer_eye_color='#000000',
+                  bg_color='#FFFFFF'):
+
+    pil = _generate_pil(text, size=size,
+                        ec_level=ec_level,
+                        style=style,
+                        style_color=style_color,
+                        inner_eye_style=inner_eye_style,
+                        inner_eye_color=inner_eye_color,
+                        outer_eye_style=outer_eye_style,
+                        outer_eye_color=outer_eye_color,
+                        bg_color=bg_color)
+
+    if qr_format == 'PDF':
+        return _gen_pdf(pil, instructions=instructions, bg_color=bg_color, put_logo=True)
+    if qr_format in ['GIF', 'JPG', 'PNG']:
+        filelike = cStringIO.StringIO()
+        pil.save(filelike, qr_format)
+        return filelike
+    else:
+        raise Exception('Awkward, unrecognised qr_format ' + \
+                        '"%s". This should NOT happen.' % (qr_format))
+
 
 def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
-                     app_size='small', decorate=True):
+                     app_size='small', instructions=True,
+                     style='default', style_color='#000000',
+                     inner_eye_style='default', inner_eye_color='#000000',
+                     outer_eye_style='default', outer_eye_color='#000000',
+                     bg_color='#FFFFFF'):
     """
         Returns a QR of the provided text in the format and size specified
         Specific values are customizable in config.py
@@ -38,10 +156,10 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             language: Text language for PDF footer. Values 'es', 'en', 'br'.
                       Defaults to 'es'.
 
-            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'. 
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'.
                        Defaults to 'PDF'.
 
-            app: Application for QR, 'interior' or 'exterior'. 
+            app: Application for QR, 'interior' or 'exterior'.
                  Automatically chooses error correction level for QR.
                  Defaults to 'interior'.
 
@@ -60,121 +178,70 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
     except Exception, e:
         raise e
 
-    page_size = landscape(A4)
-    page_width, page_height = page_size
-    size = None
     ec_level = None
     # TODO: please, use a little introspection and look for attribs
     if app == 'interior':
         if app_size == 'small':
-            ec_level=INTERIOR_SMALL['error_correction']
-            size=INTERIOR_SMALL['size']
+            ec_level = INTERIOR_SMALL['error_correction']
+            size = INTERIOR_SMALL['size']
         elif app_size == 'medium':
-            ec_level=INTERIOR_MEDIUM['error_correction']
-            size=INTERIOR_MEDIUM['size']
+            ec_level = INTERIOR_MEDIUM['error_correction']
+            size = INTERIOR_MEDIUM['size']
         elif app_size == 'large':
-            ec_level=INTERIOR_LARGE['error_correction']
-            size=INTERIOR_LARGE['size']
+            ec_level = INTERIOR_LARGE['error_correction']
+            size = INTERIOR_LARGE['size']
     elif app == 'exterior':
         if app_size == 'small':
-            ec_level=EXTERIOR_SMALL['error_correction']
-            size=EXTERIOR_SMALL['size']
+            ec_level = EXTERIOR_SMALL['error_correction']
+            size = EXTERIOR_SMALL['size']
         elif app_size == 'medium':
-            ec_level=EXTERIOR_MEDIUM['error_correction']
-            size=EXTERIOR_MEDIUM['size']
+            ec_level = EXTERIOR_MEDIUM['error_correction']
+            size = EXTERIOR_MEDIUM['size']
         elif app_size == 'large':
-            ec_level=EXTERIOR_LARGE['error_correction']
-            size=EXTERIOR_LARGE['size']
+            ec_level = EXTERIOR_LARGE['error_correction']
+            size = EXTERIOR_LARGE['size']
+        else:
+            raise Exception('No app size defined for QR generation, ' +\
+                            'looks like validation failed. Awkward!')
     else:
         raise Exception('No app type defined for QR generation, looks like' +\
                         ' validation failed. Awkward!')
-   
-    filelike = cStringIO.StringIO()
-    qr_canvas = canvas.Canvas(filelike, pagesize=page_size)
-    generated_svg = qrsvg.generate_QR_for_text(text, size=size, 
-                                               ec_level=ec_level)
-    converted_file = cStringIO.StringIO()
-    cairosvg.svg2png(generated_svg.getvalue(),
-                     write_to=converted_file)
-    converted_file.seek(0)
-    pil = Image.open(converted_file).convert('L')
 
-    if qr_format == 'PDF':
-        # Center qr draw on first half of the page
-        qr_draw_x = (page_width / 4) - (size / 2)
-        qr_draw_y = (page_height / 2) - (size / 2)
-        sq_width = size + 2
-        sq_height = size + 2
-        center_distance = distance((size, size), (sq_width, sq_height))
+    return _gen_filelike(text, size=size, ec_level=ec_level, style=style,
+                         style_color=style_color,
+                         inner_eye_style=inner_eye_style,
+                         inner_eye_color=inner_eye_color,
+                         outer_eye_style=outer_eye_style,
+                         outer_eye_color=outer_eye_color, bg_color=bg_color)
 
-        #renderPDF.draw(qr_draw, qr_canvas, x=qr_draw_x, y=qr_draw_y)
-        #renderPM.drawToFile(qr_draw, filelike, fmt='PNG')
-       
-        # Lazy ass bastard, find out the block pixel numbers and do this 
-        # with pyqrcode 
-        imagereader = ImageReader(pil)
-        qr_canvas.drawImage(imagereader, qr_draw_x, qr_draw_y)
 
-        sq_draw_x = qr_draw_x - (center_distance / 2)
-        sq_draw_y = qr_draw_y - (center_distance / 2)
+def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
+                            ec_level='L', instructions=True, style='default',
+                            style_color='#000000', inner_eye_style='default',
+                            inner_eye_color='#000000',
+                            outer_eye_style='default',
+                            outer_eye_color='#000000',
+                            bg_color='#FFFFFF'):
+    try:
+        language = language.lower()
+        qr_format = qr_format.upper()
+        ec_level = ec_level.upper()
+        size = int(size)
+        size_validation(size)
+        ec_level_validation(ec_level)
+        language_validation(language)
+        format_validation(qr_format)
+    except Exception, e:
+        raise e
 
-        qr_canvas.saveState()
-        qr_canvas.setDash((5,2))
-        qr_canvas.rect(x=sq_draw_x, y=sq_draw_y, width=size,
-                       height=size, fill=0)
-        qr_canvas.restoreState()
+    if qr_format == 'PDF' and size > EXTERIOR_LARGE['size']:
+        raise Exception('size cannot be > ' + \
+                        '%s when generating a PDF' % (EXTERIOR_LARGE['size']))
 
-        #Get logo dimentions
-        logo = Image.open(LOGO_IMAGE_PATH)
-        logo_width, logo_height = logo.size
-        logo_x = qr_draw_x + size - logo_width - LOGO_MARGIN
-        logo_y = qr_draw_y - logo_height + LOGO_MARGIN
-
-        qr_canvas.drawImage(LOGO_IMAGE_PATH, x=logo_x, y=logo_y, mask='auto')
-        # Save canvas to file
-        qr_canvas.setPageCompression(pageCompression=1)
-        qr_canvas.setCreator("http://cuadraditos.uy")
-        qr_canvas.setAuthor("ideal")
-        qr_canvas.save()
-
-    else:
-        #renderPM.drawToFile(generated_svg, filelike, fmt=qr_format)
-        pass
-
-    return filelike 
-    
-#def generate_custom_qr_file(text, error_correction, block_pixels, border_blocks,
-#                            language='es', logo=True):
-#    """Get's a custom QR with decorations"""
-#    non_decorated = _get_qr_pil(text, ec_level=error_correction,
-#                                block_pixels=block_pixels,
-#                                border_blocks=border_blocks)
-#    return _decorate_pil(non_decorated, language=language,
-#                        margin=block_pixels * border_blocks, logo=logo)
-
-#def _decorate_pil(one_pil, language='es', margin=100, logo=True):
-#    """Takes a PIL with encoded QR and decorates it"""
-#    # TTF font size must be aprox 1/4 of margin (given in pixels)
-#    font_size = margin / 4
-#    # Vertical margin from image inferior border (3 lines of text)
-#    v_margin = font_size * 3
-#    (pil_width, pil_height) = one_pil.size
-#
-#    if logo:
-#        footer = Image.open(LOGO_PATH)
-#        (footer_width, footer_height) = footer.size
-#        one_pil.paste(footer, (pil_width - margin - footer_width,
-#                      margin / 2 - footer_height / 2), footer)
-#
-#    draw = ImageDraw.Draw(one_pil)
-#
-#    if language not in TEXT_TRANS:
-#        raise Exception('No "%s" language text.' % language)
-#
-#    text_font = ImageFont.truetype(FOOTER_TEXT_FONT, font_size)
-#    draw.text((margin, pil_height - v_margin), TEXT_TRANS[language],
-#              font=text_font, fill=FOOTER_TEXT_COLOR)
-#    # We give an extra 4 px for line separation
-#    draw.text((margin, pil_height - v_margin + font_size + 4),
-#               FOOTER_URL, font=text_font, fill=FOOTER_TEXT_COLOR)
-#    return one_pil
+    return _gen_filelike(text, qr_format=qr_format, size=size,
+                         ec_level=ec_level, style=style,
+                         style_color=style_color,
+                         inner_eye_style=inner_eye_style,
+                         inner_eye_color=inner_eye_color,
+                         outer_eye_style=outer_eye_style,
+                         outer_eye_color=outer_eye_color, bg_color=bg_color)
