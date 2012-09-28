@@ -10,31 +10,10 @@ lib = path + '/lib'
 if lib not in sys.path:
     sys.path.insert(0, lib)
 
-import imp
-
-
 try:
-    from .validation import (size_validation, ec_level_validation,
-                             validate_all_config, logo_margin_validation)
-    from .config import *
-
-    #validate_all_config()    
-    size_validation(INTERIOR_SMALL['size'])
-    size_validation(INTERIOR_MEDIUM['size'])
-    size_validation(INTERIOR_LARGE['size'])
-    size_validation(EXTERIOR_SMALL['size'])
-    size_validation(EXTERIOR_MEDIUM['size'])
-    size_validation(EXTERIOR_LARGE['size'])
-    ec_level_validation(INTERIOR_SMALL['error_correction'])
-    ec_level_validation(INTERIOR_MEDIUM['error_correction'])
-    ec_level_validation(INTERIOR_LARGE['error_correction'])
-    ec_level_validation(EXTERIOR_SMALL['error_correction'])
-    ec_level_validation(EXTERIOR_MEDIUM['error_correction'])
-    ec_level_validation(EXTERIOR_LARGE['error_correction'])
-    logo_margin_validation(LOGO_MARGIN)
-
-
-    from .qrlib import (generate_qr_file)
+    from .validation import (validate_all_config)
+    validate_all_config()    
+    from .qrlib import (generate_qr_file, generate_custom_qr_file)
 
 except ImportError, e:
     print e

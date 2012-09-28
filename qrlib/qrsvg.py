@@ -1,10 +1,11 @@
 import pyqrcode
 from xml.etree import cElementTree as et
 from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
-                    QUIET_ZONE, EYE_STYLE_FILES)
+                    QUIET_ZONE, EYE_STYLE_FILES, STYLES_DIR, EYE_STYLES_DIR)
 from validation import (color_validation, ec_level_validation,
                         size_validation)
 
+from os.path import join
 import re
 import cStringIO
 import copy
@@ -16,11 +17,11 @@ def _get_style_dict(style='default'):
         a dictionary with it's shape groups
     '''
     style = style.lower()
-    directory = 'static/styles/' + style
+    directory = join(STYLES_DIR, style)
     style_dict = {}
 
     for filename in STYLE_FILES:
-        filepath = directory + '/' + filename
+        filepath = join(directory, filename)
         document = et.parse(filepath)
         root = document.getroot()
         style_dict[filename] = []
@@ -39,11 +40,11 @@ def _get_eyes_dict(style='default'):
         a dictionary with it's shape groups
     '''
     style = style.lower()
-    directory = 'static/eyes/' + style
+    directory = join(EYE_STYLES_DIR, style)
     eyes_dict = {}
 
     for filename in EYE_STYLE_FILES:
-        filepath = directory + '/' + filename
+        filepath = join(directory, filename)
         document = et.parse(filepath)
         root = document.getroot()
         eyes_dict[filename] = []

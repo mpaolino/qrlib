@@ -1,10 +1,10 @@
 # coding: utf-8
-from os.path import abspath, dirname
+from os.path import abspath, dirname, join
 
 
 # relative to static dir
 LOGO_IMAGE = 'ideal_55x20.png'
-LOGO_MARGIN = 2 
+LOGO_MARGIN = 2
 # relative to font dir
 FOOTER_FONT = 'FreeSans.ttf'
 
@@ -39,13 +39,16 @@ BLOCK_SIZE = 10  # In pixels, svg style files must be BLOCK_SIZExBLOCK_SIZE
 
 QUIET_ZONE = 4  # In blocks
 
-DASHFRAME_MARGIN = 20 # In pixels, the margin from the generated QR for PDF
+DASHFRAME_MARGIN = 20  # In pixels, the margin from the generated QR for PDF
 
 LIB_ROOT = dirname(abspath(__file__))
-FOOTER_TEXT_FONT = LIB_ROOT + "/fonts/" + FOOTER_FONT
-LOGO_IMAGE_PATH = LIB_ROOT + "/static/images/" + LOGO_IMAGE
-SCISSORS_IMAGE_PATH = LIB_ROOT + "/static/images/scissors.png"
-INSTRUCTIONS_IMAGE_PATH = LIB_ROOT + "/static/images/instructions_es.png"
+FOOTER_TEXT_FONT = join(LIB_ROOT, "fonts/", FOOTER_FONT)
+LOGO_IMAGE_PATH = join(LIB_ROOT, "static/images/", LOGO_IMAGE)
+STYLES_DIR = join(LIB_ROOT, "static/styles")
+EYE_STYLES_DIR = join(LIB_ROOT, "static/eyes")
+SCISSORS_IMAGE_PATH = join(LIB_ROOT, "static/images/scissors.png")
+INSTRUCTIONS_IMAGE_PATH = join(LIB_ROOT, "static/images/instructions_es.png")
+INSTRUCTIONS_CENTER_OFFSET = 0
 
 STYLE_FILES = ['2b.svg', '1b.svg', '1b3b.svg', '2a1b.svg',
                '2a1b1a.svg', '2a1b2c.svg', '2a1b2c3b.svg']

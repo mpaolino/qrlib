@@ -1,20 +1,20 @@
 # coding: utf-8
 # (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
-                    EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE)
+                    EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
+                    LOGO_MARGIN)
 import re
 
 
 def size_validation(width):
     if not isinstance(width, (int, float)) or width < 100 or width > 1000:
-        raise Exception('QR size validation failed ' + \
-                        '(100 <= int(width) <= 1000)')
+        raise Exception('QR size validation failed 100 <= width <= 1000)')
     return True
 
 
 def logo_margin_validation(margin):
-    if not isinstance(margin, int) or margin < 50 or margin > 300:
-        raise Exception('Logo margin validation failed (50 <= int(margin)' + \
+    if not isinstance(margin, (int, float)) or margin < 0 or margin > 300:
+        raise Exception('Logo margin validation failed (50 <= margin'
                         '<= 300)')
     return True
 
@@ -22,7 +22,7 @@ def logo_margin_validation(margin):
 def ec_level_validation(ec_level):
     if not isinstance(ec_level, (unicode, str)) or \
             ec_level.upper() not in ('L', 'M', 'Q', 'H'):
-        raise Exception('Unrecognized QR error correction' +\
+        raise Exception('Unrecognized QR error correction'
                         'level "%s"' % str(ec_level))
     return True
 
@@ -73,3 +73,4 @@ def validate_all_config():
     ec_level_validation(EXTERIOR_SMALL['error_correction'])
     ec_level_validation(EXTERIOR_MEDIUM['error_correction'])
     ec_level_validation(EXTERIOR_LARGE['error_correction'])
+    logo_margin_validation(LOGO_MARGIN)

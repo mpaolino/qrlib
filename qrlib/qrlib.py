@@ -4,7 +4,7 @@ from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
                     LOGO_IMAGE_PATH, LOGO_MARGIN, DASHFRAME_MARGIN,
                     SCISSORS_IMAGE_PATH, PDF_CREATOR, PDF_AUTHOR,
-                    INSTRUCTIONS_IMAGE_PATH)
+                    INSTRUCTIONS_IMAGE_PATH, INSTRUCTIONS_CENTER_OFFSET)
 import qrsvg
 import cairosvg
 from reportlab.pdfgen import canvas
@@ -17,13 +17,13 @@ from validation import (format_validation, application_validation,
 import cStringIO
 import Image
 # Monkey patch ReportLab
-# http://stackoverflow.com/questions/2227493/reportlab-and-python-imaging-library-images-from-memory-issue
+# http://stackoverflow.com/questions/2227493/\
+# reportlab-and-python-imaging-library-images-from-memory-issue
 import reportlab.lib.utils
 reportlab.lib.utils.Image = Image
-import ipdb
 
 
-def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True, 
+def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True,
              put_logo=True):
     """
         Receives a PIL image with a QR and generates a PDF output
@@ -63,7 +63,6 @@ def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True,
         qr_canvas.drawImage(SCISSORS_IMAGE_PATH, x=scissors_x, y=sq_draw_y,
                             mask='auto')
 
-
     imagereader = ImageReader(qr_pil)
     qr_canvas.drawImage(imagereader, qr_draw_x, qr_draw_y)
 
@@ -74,12 +73,13 @@ def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True,
         logo_x = sq_draw_x + (sq_width / 2) - (logo_width / 2)
         logo_y = sq_draw_y + LOGO_MARGIN
         qr_canvas.drawImage(LOGO_IMAGE_PATH, x=logo_x, y=logo_y, mask='auto')
-    
+
     if instructions:
         #TODO: Paste the instructions in the PDF
         instructions = Image.open(INSTRUCTIONS_IMAGE_PATH)
         instruction_width, instruction_height = instructions.size
-        qr_canvas.drawImage(INSTRUCTIONS_IMAGE_PATH, x=page_width / 2,
+        inst_x = (page_width / 2) - INSTRUCTIONS_CENTER_OFFSET
+        qr_canvas.drawImage(INSTRUCTIONS_IMAGE_PATH, x=inst_x,
                             y=(page_height / 2) - (instruction_width / 2),
                             mask='auto')
 
@@ -131,7 +131,8 @@ def _gen_filelike(text, language='es', size=150, ec_level='L', qr_format='PDF',
                         bg_color=bg_color)
 
     if qr_format == 'PDF':
-        return _gen_pdf(pil, instructions=instructions, bg_color=bg_color, put_logo=True)
+        return _gen_pdf(pil, instructions=instructions, bg_color=bg_color,
+                        put_logo=True)
     if qr_format in ['GIF', 'JPG', 'PNG']:
         filelike = cStringIO.StringIO()
         pil.save(filelike, qr_format)
@@ -148,13 +149,13 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
                      outer_eye_style='default', outer_eye_color='#000000',
                      bg_color='#FFFFFF'):
     """
-        Returns a QR of the provided text in the format and size specified
-        Specific values are customizable in config.py
+        Returns a QR of the provided text in the format and predefined sizes
+        specified in config.py
 
         Parameters:
 
-            language: Text language for PDF footer. Values 'es', 'en', 'br'.
-                      Defaults to 'es'.
+            language: Text language for PDF instructions. Only 'es' spanish for
+                      now.
 
             qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'.
                        Defaults to 'PDF'.
@@ -165,6 +166,27 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
 
             app_size: Application size, 'small', 'medium', 'large'.
                       Defaults to 'small'.
+
+            instructions: Print or not the instructions in the PDF
+
+            style: Style to apply to QR blocks (one of static/styles).
+                   Defaults to 'default' style.
+
+            style_color: Hex color code for style. Defaults to #FFFFFFF
+
+            inner_eye_style: Style to apply to inner eyes of QR.
+                             Defaults to 'default' style.
+
+            inner_eye_color: Hex color code for inner eye style.
+                             Defaults to #FFFFFFF.
+
+            outer_eye_style: Style to apply to inner eyes of QR.
+                             Defaults to 'default' style.
+
+            inner_eye_color: Hex color code for inner eye style.
+                             Defaults to #FFFFFFF.
+
+            bg_color: Hex color code for QR background.
     """
     try:
         language = language.lower()
@@ -222,6 +244,52 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
                             outer_eye_style='default',
                             outer_eye_color='#000000',
                             bg_color='#FFFFFF'):
+    """
+        Returns a QR of the provided text in the format and custom size
+        and error corretion level.
+
+        Parameters:
+
+            language: Text language for PDF instructions. Only 'es' spanish for
+                      now.
+
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'.
+                       Defaults to 'PDF'. No format besides PDF will show
+                       instructions.
+
+            size: Size in pixels for the generated QR. The size includes
+                  a mandatory safe margin for QR readability. This border
+                  size its relative to block sizes and can be customized
+                  in config.py
+
+            ec_level: Error correction level. Values:
+                      'L' - approx 7%
+                      'M' - approx 15%
+                      'Q' - approx 25%
+                      'H' - approx 30%
+
+            instructions: Print or not the instructions in the PDF
+
+            style: Style to apply to QR blocks (one of static/styles).
+                   Defaults to 'default' style.
+
+            style_color: Hex color code for style. Defaults to #FFFFFFF
+
+            inner_eye_style: Style to apply to inner eyes of QR.
+                             Defaults to 'default' style.
+
+            inner_eye_color: Hex color code for inner eye style.
+                             Defaults to #FFFFFFF.
+
+            outer_eye_style: Style to apply to inner eyes of QR.
+                             Defaults to 'default' style.
+
+            inner_eye_color: Hex color code for inner eye style.
+                             Defaults to #FFFFFFF.
+
+            bg_color: Hex color code for QR background.
+    """
+
     try:
         language = language.lower()
         qr_format = qr_format.upper()
