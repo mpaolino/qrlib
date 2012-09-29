@@ -133,7 +133,7 @@ def _gen_filelike(text, language='es', size=150, ec_level='L', qr_format='PDF',
     if qr_format == 'PDF':
         return _gen_pdf(pil, instructions=instructions, bg_color=bg_color,
                         put_logo=True)
-    if qr_format in ['GIF', 'JPG', 'PNG']:
+    if qr_format in ['GIF', 'JPEG', 'PNG']:
         filelike = cStringIO.StringIO()
         pil.save(filelike, qr_format)
         return filelike
@@ -157,7 +157,7 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             language: Text language for PDF instructions. Only 'es' spanish for
                       now.
 
-            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'.
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG'.
                        Defaults to 'PDF'.
 
             app: Application for QR, 'interior' or 'exterior'.
@@ -229,7 +229,8 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
         raise Exception('No app type defined for QR generation, looks like' +\
                         ' validation failed. Awkward!')
 
-    return _gen_filelike(text, size=size, ec_level=ec_level, style=style,
+    return _gen_filelike(text, size=size, ec_level=ec_level,
+                         qr_format=qr_format, style=style,
                          style_color=style_color,
                          inner_eye_style=inner_eye_style,
                          inner_eye_color=inner_eye_color,
@@ -253,7 +254,7 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
             language: Text language for PDF instructions. Only 'es' spanish for
                       now.
 
-            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPG'.
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG'.
                        Defaults to 'PDF'. No format besides PDF will show
                        instructions.
 

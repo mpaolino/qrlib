@@ -4,6 +4,7 @@ from qrlib import generate_qr_file
 import Image 
 import zbar
 import unittest2 as unittest
+import ipdb
 
 
 class GeneratePDFTestCase(unittest.TestCase):
@@ -14,8 +15,8 @@ class GeneratePDFTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def qr_image_format(self, img_format):
-        generated_img = generate_qr_file('JUST SOME TEXT', qr_format=img_format)
+    def qr_image_format(self, qr_format):
+        generated_img = generate_qr_file('JUST SOME TEXT', qr_format=qr_format)
         generated_img.seek(0)
         pil = Image.open(generated_img).convert('L')
         width, height = pil.size
@@ -28,17 +29,17 @@ class GeneratePDFTestCase(unittest.TestCase):
         for symbol in image:
             self.assertEqual(symbol.data,'JUST SOME TEXT')
 
-#    def test_gif(self):
-#        self.qr_image_format('GIF')
+    def test_gif(self):
+        self.qr_image_format('GIF')
 
-#    def test_png(self):
-#        self.qr_image_format('PNG')
+    def test_png(self):
+        self.qr_image_format('PNG')
 
-#    def test_jpg(self):
-#        self.qr_image_format('JPG')
+    def test_jpeg(self):
+        self.qr_image_format('JPEG')
 
-    def test_pdf(self):
-        generated_pdf = generate_qr_file(u'JUST TEXT', qr_format='PDF')
+#    def test_pdf(self):
+#        self.qr_image_format('PDF')
 
 if __name__ == '__main__':
     unittest.main()

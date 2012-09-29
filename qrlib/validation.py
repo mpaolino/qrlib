@@ -29,7 +29,7 @@ def ec_level_validation(ec_level):
 
 def format_validation(qr_format):
     if not isinstance(qr_format, (unicode, str)) or \
-            qr_format.upper() not in ('PDF', 'GIF', 'PNG', 'JPG'):
+            qr_format.upper() not in ('PDF', 'GIF', 'PNG', 'JPEG'):
         raise Exception('Unrecognized QR output format')
     return True
 
