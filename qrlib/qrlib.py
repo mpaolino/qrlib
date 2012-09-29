@@ -5,7 +5,7 @@ from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     LOGO_IMAGE_PATH, LOGO_MARGIN, DASHFRAME_MARGIN,
                     SCISSORS_IMAGE_PATH, PDF_CREATOR, PDF_AUTHOR,
                     INSTRUCTIONS_IMAGE_PATH, INSTRUCTIONS_CENTER_OFFSET)
-import .qrsvg
+from . import qrsvg
 import cairosvg
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, landscape
