@@ -1,5 +1,4 @@
 import qrsvg
-import pyqrcode
 import sys
 
 #url = 'http://ilskdjakldjlkadjlkajsdlkajdlkadeal.com.uyasdklajsdkljaasdasdasdasdasdasdasddaskjasdkjhaskdjhajkdhajksdhakjsdhakjshdakjsdhakjsdhaksjdhaskjdhskajdhaksjdhaskdjh'
@@ -22,6 +21,3 @@ qrcode = qrsvg.generate_QR_for_text(url,
 f = open('test.svg', 'w')
 f.write(qrcode.getvalue())
 f.close()
-
-#pil = pyqrcode.MakeQRImage(url)
-#pil.save('test.gif', 'GIF')

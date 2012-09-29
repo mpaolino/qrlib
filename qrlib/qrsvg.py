@@ -1,4 +1,4 @@
-import pyqrcode
+from lib import pyqrcode
 from xml.etree import cElementTree as et
 from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
                     QUIET_ZONE, EYE_STYLE_FILES, STYLES_DIR, EYE_STYLES_DIR)
@@ -88,7 +88,7 @@ def _insert_shape(x, y, shape_w_rotation, final_svg, style_dict='default',
         rotation = 0
 
     block_size = BLOCK_SIZE
-    if block_scale != 1 and block_scale > 0:
+    if block_scale > 0:
         block_size = BLOCK_SIZE * block_scale
     else:
         raise Exception('Block scale \'%s\' not valid' % (block_scale))
