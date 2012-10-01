@@ -17,7 +17,7 @@ setup(
     license = "Propietary",
     keywords = "qr library qrlib ideal",
     url = "http://github.com/mpaolino/qrlib",
-    packages=['qrlib', 'qrlib.lib', 'qrlib.fonts', 'qrlib.static',
+    packages=['qrlib', 'qrlib.lib', 'qrlib.fonts', 
               'qrlib.tests'],
     long_description=read('README.rst'),
     classifiers=[
@@ -25,6 +25,17 @@ setup(
         "Topic :: Utilities",
         ],
     package_dir={'qrlib': 'qrlib'},
-    package_data={'qrlib': ['static/*.png', 'fonts/*.ttf']},
-    install_requires=['PIL>=1.1.7', 'unittest2>=0.5.1', 'zbar>=0.10']
+    package_data={'qrlib': ['static/images/*',
+                            'static/eyes/default/*',
+                            'static/eyes/classic/*',
+                            'static/eyes/heavyround/*',
+                            'static/eyes/circle/*',
+                            'static/styles/circle/*',
+                            'static/styles/classic/*',
+                            'static/styles/default/*',
+                            'static/styles/heavyround/*',
+                            'static/styles/lightround/*',
+                            'static/styles/sieve/*']},
+    install_requires=['PIL>=1.1.7', 'unittest2>=0.5.1', 'zbar>=0.10',
+                      'CairoSVG>=0.4.4']
     )
