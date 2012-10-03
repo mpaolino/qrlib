@@ -15,7 +15,7 @@
    viewBox="0 0 9.9999999 10"
    id="svg2"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="2b.svg">
+   sodipodi:docname="1b.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -64,12 +64,10 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <rect
+  <path
      style="fill:#000000;fill-opacity:1;stroke:none"
+     d="M -5e-8,-1 10,-1 10,3.26039 10,6.73961 C 10,8.545866 8.545866,10 6.7396099,10 L 3.26039,10 C 1.4541339,10 -5.0000001e-8,8.545866 -5.0000001e-8,6.73961 l 0,-3.47922 C -5.0000001e-8,1.454134 -5e-8,-1 -5e-8,-1 z"
      id="rect2984"
-     width="10"
-     height="10"
-     x="-5.0000001e-08"
-     y="0"
-     ry="1.4383563" />
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccsssssc" />
 </svg>
