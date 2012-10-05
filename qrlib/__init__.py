@@ -14,6 +14,7 @@ try:
     from .validation import (validate_all_config)
     validate_all_config()    
     from .qrlib import (generate_qr_file, generate_custom_qr_file)
+    from .exceptions import (StyleMissing, StyleFileMissing)
 
 except ImportError, e:
     print e

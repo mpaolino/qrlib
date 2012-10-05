@@ -2,8 +2,29 @@
 # (c) Copyright 2011 by Miguel Paolino <mpaolino@ideal.com.uy>
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
-                    LOGO_MARGIN)
+                    LOGO_MARGIN, EYE_STYLES_DIR, STYLES_DIR)
+from exceptions import StyleMissing
+
 import re
+from os.path import (join, isdir)
+
+
+def _check_style(style_dir, style):
+    if not isinstance(style, (str, unicode)):
+        raise AttributeError('style must be str or unicode')
+    style = style.lower()
+    directory = join(style_dir, style)
+    if not isdir(directory):
+        raise StyleMissing(style)
+    return True
+
+
+def style_validation(style):
+    return _check_style(STYLES_DIR, style)
+
+
+def eye_style_validation(style):
+    return _check_style(EYE_STYLES_DIR, style)
 
 
 def size_validation(width):
@@ -59,6 +80,7 @@ def color_validation(color):
     if not re.match('\#[0-9A-Fa-f]{6}', color):
         raise Exception('Invalid color \'%s\'' % (color))
     return True
+
 
 def validate_all_config():
     size_validation(INTERIOR_SMALL['size'])

@@ -1,9 +1,12 @@
+# coding: utf-8
+# (c) Copyright 2012 by Miguel Paolino <mpaolino@ideal.com.uy>
 from lib import pyqrcode
 from xml.etree import cElementTree as et
 from config import (BLOCK_SIZE, BASIC_SHAPES, SHAPE_GROUP, STYLE_FILES,
                     QUIET_ZONE, EYE_STYLE_FILES, STYLES_DIR, EYE_STYLES_DIR)
 from validation import (color_validation, ec_level_validation,
-                        size_validation)
+                        size_validation, style_validation,
+                        eye_style_validation)
 
 from os.path import join
 import re
@@ -582,6 +585,9 @@ def generate_QR_for_text(text, eclevel='Q', style='default',
     color_validation(bg_color)
     size_validation(size)
     ec_level_validation(ec_level)
+    style_validation(style)
+    eye_style_validation(inner_eye_style)
+    eye_style_validation(outer_eye_style)
     qr_code = pyqrcode.MakeQR(text,
                               errorCorrectLevel=string_to_eclevel(ec_level))
     return _qrcode_to_svg(qr_code, style=style, style_color=style_color,

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from qrlib import generate_qr_file
+from qrlib.exceptions import StyleMissing
 import Image 
 import zbar
 import unittest2 as unittest
@@ -15,8 +16,14 @@ class GeneratePDFTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def qr_image_format(self, qr_format):
-        generated_img = generate_qr_file('JUST SOME TEXT', qr_format=qr_format)
+    def qr_image_format(self, qr_format, style='default',
+                        inner_eye_style='default',
+                        outer_eye_style='default'):
+
+        generated_img = generate_qr_file('JUST SOME TEXT', qr_format=qr_format,
+                                         style=style,
+                                         inner_eye_style=inner_eye_style,
+                                         outer_eye_style=outer_eye_style)
         generated_img.seek(0)
         pil = Image.open(generated_img).convert('L')
         width, height = pil.size
@@ -38,8 +45,18 @@ class GeneratePDFTestCase(unittest.TestCase):
     def test_jpeg(self):
         self.qr_image_format('JPEG')
 
-#    def test_pdf(self):
-#        self.qr_image_format('PDF')
+    def test_fail_style(self):
+       self.assertRaises(StyleMissing, self.qr_image_format, 'PNG',
+                         style='NONE')
+
+    def test_fail_innereyestyle(self):
+       self.assertRaises(StyleMissing, self.qr_image_format, 'PNG',
+                         inner_eye_style='NONE')
+
+    def test_fail_outereyestyle(self):
+       self.assertRaises(StyleMissing, self.qr_image_format, 'PNG',
+                         outer_eye_style='NONE')
+
 
 if __name__ == '__main__':
     unittest.main()
