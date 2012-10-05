@@ -2,22 +2,31 @@
 # (c) Copyright 2012 by Miguel Paolino <mpaolino@ideal.com.uy>
 
 class StyleFileMissing(Exception):
-    def __init__(self, style, filename):
-        if not isinstance(filename, (str, unicode)) or \
-            not isinstance(style, (str, unicode)):
-            raise AttributeError
-        self.style = style
-        self.filename = filename
-
-    def __repr__(self):
-        return 'Style \'%s\' misses file \'%s\'' % (self.filepath)
-
+    pass
 
 class StyleMissing(Exception):
-    def __init__(self, style):
-        if not isinstance(style, (str, unicode)):
-            raise AttributeError
-        self.style = style
+    pass
 
-    def __repr__(self):
-        return 'Style \'%s\' is missing' % (self.style)
+class InnerEyeStyleMissing(StyleMissing):
+    pass
+
+class OuterEyeStyleMissing(StyleMissing):
+    pass
+
+class InvalidColor(Exception):
+    pass
+
+class InvalidSize(Exception):
+    pass
+
+class InvalidLanguage(Exception):
+    pass
+
+class InvalidAppSize(Exception):
+    pass
+
+class InvalidApplication(Exception):
+    pass
+
+class InvalidEcLevel(Exception):
+    pass

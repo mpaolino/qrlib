@@ -3,7 +3,10 @@
 from config import (INTERIOR_SMALL, INTERIOR_MEDIUM, INTERIOR_LARGE,
                     EXTERIOR_SMALL, EXTERIOR_MEDIUM, EXTERIOR_LARGE,
                     LOGO_MARGIN, EYE_STYLES_DIR, STYLES_DIR)
-from exceptions import StyleMissing
+from exceptions import (StyleMissing, InvalidColor, InvalidSize,
+                        InvalidApplication, InnerEyeStyleMissing,
+                        OuterEyeStyleMissing, InvalidSize,
+                        InvalidLanguage, InvalidEcLevel)
 
 import re
 from os.path import (join, isdir)
@@ -23,27 +26,39 @@ def style_validation(style):
     return _check_style(STYLES_DIR, style)
 
 
-def eye_style_validation(style):
-    return _check_style(EYE_STYLES_DIR, style)
+def inner_eye_style_validation(style):
+    try:
+        _check_style(EYE_STYLES_DIR, style)
+    except StyleMissing:
+        raise InnerEyeStyleMissing('Inner style \'%s\' missing' % (style))
+    return True
+
+
+def outer_eye_style_validation(style):
+    try:
+        _check_style(EYE_STYLES_DIR, style)
+    except StyleMissing:
+        raise OuterEyeStyleMissing('Outer style \'%s\' missing' % (style))
+    return True
 
 
 def size_validation(width):
     if not isinstance(width, (int, float)) or width < 100 or width > 1000:
-        raise Exception('QR size validation failed 100 <= width <= 1000)')
+        raise InvalidSize('QR size validation failed 100 <= width <= 1000)')
     return True
 
 
 def logo_margin_validation(margin):
     if not isinstance(margin, (int, float)) or margin < 0 or margin > 300:
-        raise Exception('Logo margin validation failed (50 <= margin'
-                        '<= 300)')
+        raise InvalidLogoMargin('Logo margin validation failed (50 <= margin'
+                                '<= 300)')
     return True
 
 
 def ec_level_validation(ec_level):
     if not isinstance(ec_level, (unicode, str)) or \
             ec_level.upper() not in ('L', 'M', 'Q', 'H'):
-        raise Exception('Unrecognized QR error correction'
+        raise InvalidEcLevel('Unrecognized QR error correction'
                         'level "%s"' % str(ec_level))
     return True
 
@@ -58,27 +73,27 @@ def format_validation(qr_format):
 def application_validation(application):
     if not isinstance(application, (unicode, str)) or \
             application.lower() not in ('interior', 'exterior'):
-        raise Exception('Unrecognized QR application')
+        raise InvalidApplication('Unrecognized QR application')
     return True
 
 
 def appsize_validation(app_size):
     if not isinstance(app_size, (unicode, str)) or \
             app_size.lower() not in ('small', 'medium', 'large'):
-        raise Exception('Unrecognized QR application size')
+        raise InvalidAppSize('Unrecognized QR application size')
     return True
 
 
 def language_validation(language):
     if not isinstance(language, (unicode, str)) or \
             language.lower() not in ('es', 'en', 'br'):
-        raise Exception('Unrecognized QR footer language')
+        raise InvalidLanguage('Unrecognized QR footer language')
     return True
 
 
 def color_validation(color):
     if not re.match('\#[0-9A-Fa-f]{6}', color):
-        raise Exception('Invalid color \'%s\'' % (color))
+        raise InvalidColor('Invalid color \'%s\'' % (color))
     return True
 
 

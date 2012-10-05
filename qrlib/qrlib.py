@@ -14,7 +14,8 @@ from reportlab.lib.colors import HexColor
 from .validation import (format_validation, application_validation,
                         appsize_validation, language_validation,
                         ec_level_validation, size_validation,
-                        style_validation, eye_style_validation)
+                        style_validation, inner_eye_style_validation,
+                        outer_eye_style_validation)
 import cStringIO
 import Image
 # Monkey patch ReportLab
@@ -302,8 +303,8 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
         language_validation(language)
         format_validation(qr_format)
         style_validation(style)
-        eye_style_validation(inner_eye_style)
-        eye_style_validation(outer_eye_style)
+        inner_eye_style_validation(inner_eye_style)
+        outer_eye_style_validation(outer_eye_style)
     except Exception, e:
         raise e
 
