@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 from qrlib import generate_qr_file
-from qrlib.exceptions import StyleMissing
+from qrlib.exceptions import (StyleMissing, InnerEyeStyleMissing,
+                              OuterEyeStyleMissing)
 import Image 
 import zbar
 import unittest2 as unittest
@@ -50,11 +51,11 @@ class GeneratePDFTestCase(unittest.TestCase):
                          style='NONE')
 
     def test_fail_innereyestyle(self):
-       self.assertRaises(StyleMissing, self.qr_image_format, 'PNG',
+       self.assertRaises(InnerEyeStyleMissing, self.qr_image_format, 'PNG',
                          inner_eye_style='NONE')
 
     def test_fail_outereyestyle(self):
-       self.assertRaises(StyleMissing, self.qr_image_format, 'PNG',
+       self.assertRaises(OuterEyeStyleMissing, self.qr_image_format, 'PNG',
                          outer_eye_style='NONE')
 
 
