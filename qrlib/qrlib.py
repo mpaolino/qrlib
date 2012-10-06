@@ -122,6 +122,17 @@ def _gen_filelike(text, language='es', size=150, ec_level='L', qr_format='PDF',
                   outer_eye_style='default', outer_eye_color='#000000',
                   bg_color='#FFFFFF'):
 
+    if qr_format == 'SVG':
+        return qrsvg.generate_QR_for_text(text, size=size,
+                                          ec_level=ec_level,
+                                          style=style,
+                                          style_color=style_color,
+                                          inner_eye_style=inner_eye_style,
+                                          inner_eye_color=inner_eye_color,
+                                          outer_eye_style=outer_eye_style,
+                                          outer_eye_color=outer_eye_color,
+                                          bg_color=bg_color)
+
     pil = _generate_pil(text, size=size,
                         ec_level=ec_level,
                         style=style,

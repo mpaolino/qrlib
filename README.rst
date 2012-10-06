@@ -10,9 +10,7 @@ Sample Usage
 ::
 
     import qrlib
-
-    one_qr = qrlib.interior_small_qr_pil('http://ideal.com.uy', language='en')
-    one_qr.show()
+    one_qr = qrlib.generate_qr_file('http://ideal.com.uy', language='en')
 
 
 
@@ -35,6 +33,7 @@ of the requested format.
 
 Supported outputs:
 
+  * SVG
   * GIF
   * PNG
   * JPEG
