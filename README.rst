@@ -34,10 +34,11 @@ Both functions will return a filelike object with string binary data
 of the requested format.
 
 Supported outputs:
-* GIF
-* PNG
-* JPEG
-* PDF
+
+  * GIF
+  * PNG
+  * JPEG
+  * PDF
 
 
 Functions
