@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "qrlib",
-    version = "0.0.2",
+    version = "1.0.0",
     author = "Miguel Paolino",
     author_email = "mpaolino@ideal.com.uy",
     description = ("QR Image and PDF generation library"),
@@ -21,7 +21,7 @@ setup(
               'qrlib.tests'],
     long_description=read('README.rst'),
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 1 - Stable",
         "Topic :: Utilities",
         ],
     package_dir={'qrlib': 'qrlib'},
