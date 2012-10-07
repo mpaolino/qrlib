@@ -170,7 +170,7 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             language: Text language for PDF instructions. Only 'es' spanish for
                       now.
 
-            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG'.
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG', 'SVG'.
                        Defaults to 'PDF'.
 
             app: Application for QR, 'interior' or 'exterior'.
@@ -185,21 +185,21 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
             style: Style to apply to QR blocks (one of static/styles).
                    Defaults to 'default' style.
 
-            style_color: Hex color code for style. Defaults to #FFFFFFF
+            style_color: Hex color code for style. Defaults to #000000
 
             inner_eye_style: Style to apply to inner eyes of QR.
                              Defaults to 'default' style.
 
             inner_eye_color: Hex color code for inner eye style.
-                             Defaults to #FFFFFFF.
+                             Defaults to #000000.
 
             outer_eye_style: Style to apply to inner eyes of QR.
                              Defaults to 'default' style.
 
-            inner_eye_color: Hex color code for inner eye style.
-                             Defaults to #FFFFFFF.
+            outer_eye_color: Hex color code for outer eye style.
+                             Defaults to #000000.
 
-            bg_color: Hex color code for QR background.
+            bg_color: Hex color code for QR background. Defaults to #FFFFFF
     """
     try:
         language = language.lower()
@@ -267,7 +267,7 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
             language: Text language for PDF instructions. Only 'es' spanish for
                       now.
 
-            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG'.
+            qr_format: Format of QR, Values 'PDF', 'GIF', 'PNG', 'JPEG', 'SVG'.
                        Defaults to 'PDF'. No format besides PDF will show
                        instructions.
 
@@ -287,21 +287,21 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
             style: Style to apply to QR blocks (one of static/styles).
                    Defaults to 'default' style.
 
-            style_color: Hex color code for style. Defaults to #FFFFFFF
+            style_color: Hex color code for style. Defaults to #000000
 
             inner_eye_style: Style to apply to inner eyes of QR.
                              Defaults to 'default' style.
 
             inner_eye_color: Hex color code for inner eye style.
-                             Defaults to #FFFFFFF.
+                             Defaults to #000000.
 
             outer_eye_style: Style to apply to inner eyes of QR.
                              Defaults to 'default' style.
 
-            inner_eye_color: Hex color code for inner eye style.
-                             Defaults to #FFFFFFF.
+            outer_eye_color: Hex color code for outer eye style.
+                             Defaults to #000000.
 
-            bg_color: Hex color code for QR background.
+            bg_color: Hex color code for QR background. Defaults to #FFFFFF
     """
 
     try:
