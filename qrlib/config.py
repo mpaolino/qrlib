@@ -3,7 +3,7 @@ from os.path import abspath, dirname, join
 
 
 # relative to static dir
-LOGO_IMAGE = 'ideal_55x20.png'
+LOGO_IMAGE = 'ceibal_20x20.png'
 LOGO_MARGIN = 2
 # relative to font dir
 FOOTER_FONT = 'FreeSans.ttf'
