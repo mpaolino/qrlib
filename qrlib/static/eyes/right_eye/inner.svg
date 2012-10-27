@@ -30,8 +30,8 @@
      showgrid="false"
      inkscape:object-paths="true"
      inkscape:zoom="16"
-     inkscape:cx="12.091445"
-     inkscape:cy="13.251649"
+     inkscape:cx="20.167634"
+     inkscape:cy="11.646432"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -53,5 +53,6 @@
   <path
      id="rect3802"
      style="fill:#000000;fill-opacity:1;stroke:none"
-     d="m 8.9611483,0.02239227 12.0777037,0 C 26.003328,0.02239227 30,4.0190644 30,8.9835405 l 0,12.0777035 0,8.961148 -21.0388517,0 C 3.9966721,30.022392 0,26.02572 0,21.061244 L 0,0.02239227 z" />
+     d="m 8.961148,0.02239227 12.077704,0 C 26.003328,0.02239227 30,4.0190644 30,8.9835405 l 0,12.0777035 0,8.961148 -21.038852,0 C 3.996672,30.022392 0,26.02572 0,21.061244 L 0,0.02239227 z"
+     inkscape:connector-curvature="0" />
 </svg>
