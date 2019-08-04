@@ -11,7 +11,7 @@ from validation import (color_validation, ec_level_validation,
 
 from os.path import join
 import re
-import cStringIO
+import io
 import copy
 
 
@@ -552,10 +552,10 @@ def _qrcode_to_svg(qrcode, style='default', style_color='#000000',
                           style_dict=style_dict, color=style_color,
                           block_scale=block_scale)
 
-    filelike = cStringIO.StringIO()
-    filelike.write('<?xml version=\"1.0\" standalone=\"no\"?>\n')
-    filelike.write('<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n')
-    filelike.write('\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n')
+    filelike = io.BytesIO()
+    filelike.write(str.encode('<?xml version=\"1.0\" standalone=\"no\"?>\n'))
+    filelike.write(str.encode('<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n'))
+    filelike.write(str.encode('\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n'))
     filelike.write(et.tostring(svg_doc))
     return filelike
 

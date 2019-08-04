@@ -16,8 +16,8 @@ from .validation import (format_validation, application_validation,
                         ec_level_validation, size_validation,
                         style_validation, inner_eye_style_validation,
                         outer_eye_style_validation)
-import cStringIO
-import Image
+import io
+from PIL import Image
 # Monkey patch ReportLab
 # http://stackoverflow.com/questions/2227493/\
 # reportlab-and-python-imaging-library-images-from-memory-issue
@@ -32,7 +32,7 @@ def _gen_pdf(qr_pil, instructions=True, bg_color='#FFFFFF', frame=True,
         in a filelike (StringIO)
     """
     (qr_width, qr_height) = qr_pil.size  # qr_width == qr_height, always
-    filelike = cStringIO.StringIO()
+    filelike = io.BytesIO()
     page_size = landscape(A4)
     page_width, page_height = page_size
     qr_canvas = canvas.Canvas(filelike, pagesize=page_size)
@@ -108,7 +108,7 @@ def _generate_pil(text, size='100', ec_level='L', style='default',
                                                outer_eye_style=outer_eye_style,
                                                outer_eye_color=outer_eye_color,
                                                bg_color=bg_color)
-    converted_file = cStringIO.StringIO()
+    converted_file = io.BytesIO()
     cairosvg.svg2png(generated_svg.getvalue(),
                      write_to=converted_file)
     converted_file.seek(0)
@@ -147,7 +147,7 @@ def _gen_filelike(text, language='es', size=150, ec_level='L', qr_format='PDF',
         return _gen_pdf(pil, instructions=instructions, bg_color=bg_color,
                         put_logo=True)
     if qr_format in ['GIF', 'JPEG', 'PNG']:
-        filelike = cStringIO.StringIO()
+        filelike = io.BytesIO()
         pil.save(filelike, qr_format)
         return filelike
     else:
@@ -210,7 +210,7 @@ def generate_qr_file(text, language='es', qr_format='PDF', app='interior',
         format_validation(qr_format)
         application_validation(app)
         appsize_validation(app_size)
-    except Exception, e:
+    except Exception as e:
         raise e
 
     ec_level = None
@@ -316,7 +316,7 @@ def generate_custom_qr_file(text, language='es', qr_format='PDF', size=150,
         style_validation(style)
         inner_eye_style_validation(inner_eye_style)
         outer_eye_style_validation(outer_eye_style)
-    except Exception, e:
+    except Exception as e:
         raise e
 
     if qr_format == 'PDF' and size > EXTERIOR_LARGE['size']:
