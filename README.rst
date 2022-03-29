@@ -21,7 +21,7 @@ Sample Usage
 
     import qrlib
     one_qr = qrlib.generate_qr_file('http://ideal.com.uy', qr_format='PDF')
-    f = open(qrsample.pdf, 'w')
+    f = open('qrsample.pdf', 'w')
     f.write(one_qr.getvalue())
     f.close()
 
