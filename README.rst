@@ -1,5 +1,5 @@
 ==========================================================================================================================
-WARNING: This project is old and unmaintained. I don't have any use for it anymore, if you do, please consider taking over
+WARNING: This project is VERY old and unmaintained (Python 2). I don't have any use for it anymore, if you do, please consider taking over
 ==========================================================================================================================
 
 
