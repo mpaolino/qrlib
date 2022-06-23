@@ -85,14 +85,14 @@ def MakeQR(data, minTypeNumber = 0, errorCorrectLevel = QRErrorCorrectLevel.Q, v
 
         minTypeNumber = int(minTypeNumber)
 
-    for x in xrange(0, 50):
+    for x in range(0, 50):
         try:
             qr = QRCode(minTypeNumber + x, errorCorrectLevel)
             qr.addData(data)
             qr.make()
 
             return  qr
-        except CodeLengthOverflowError, x:
+        except CodeLengthOverflowError as x:
             if VERBOSE:
                 print >> sys.stderr, "QRCode.Make - bad guess - trying again", x
 
@@ -1036,7 +1036,7 @@ class QRRSBlock:
         if rsBlock == None:
             raise Exception("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel)
 
-        length = len(rsBlock) / 3
+        length = int(len(rsBlock) / 3)
 
         list = []
 
@@ -1073,7 +1073,7 @@ class QRBitBuffer:
     def get(self, index):
         bufIndex = math.floor(index / 8)
         val = ( (self.buffer[bufIndex] >> (7 - index % 8) ) & 1) == 1
-        print "get ", val
+        print("get ", val)
         return ( (self.buffer[bufIndex] >> (7 - index % 8) ) & 1) == 1
     def put(self, num, length):
         for i in range(length):

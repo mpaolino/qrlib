@@ -19,8 +19,8 @@ try:
                              OuterEyeStyleMissing, InvalidSize,
                              InvalidLanguage, InvalidEcLevel)
 
-except ImportError, e:
-    print e
+except ImportError as e:
+    print(e)
 #    import sys
 #    sys.stderr.write("Error: Can't find the file 'config.py' in the directory containing %r." % __file__)
     sys.exit(1)

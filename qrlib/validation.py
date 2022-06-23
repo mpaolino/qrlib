@@ -13,7 +13,7 @@ from os.path import (join, isdir)
 
 
 def _check_style(style_dir, style):
-    if not isinstance(style, (str, unicode)):
+    if not isinstance(style, (bytes, str)):
         raise AttributeError('style must be str or unicode')
     style = style.lower()
     directory = join(style_dir, style)
@@ -56,7 +56,7 @@ def logo_margin_validation(margin):
 
 
 def ec_level_validation(ec_level):
-    if not isinstance(ec_level, (unicode, str)) or \
+    if not isinstance(ec_level, (str, bytes)) or \
             ec_level.upper() not in ('L', 'M', 'Q', 'H'):
         raise InvalidEcLevel('Unrecognized QR error correction'
                         'level "%s"' % str(ec_level))
@@ -64,28 +64,28 @@ def ec_level_validation(ec_level):
 
 
 def format_validation(qr_format):
-    if not isinstance(qr_format, (unicode, str)) or \
+    if not isinstance(qr_format, (str, bytes)) or \
             qr_format.upper() not in ('SVG', 'PDF', 'GIF', 'PNG', 'JPEG'):
         raise Exception('Unrecognized QR output format')
     return True
 
 
 def application_validation(application):
-    if not isinstance(application, (unicode, str)) or \
+    if not isinstance(application, (str, bytes)) or \
             application.lower() not in ('interior', 'exterior'):
         raise InvalidApplication('Unrecognized QR application')
     return True
 
 
 def appsize_validation(app_size):
-    if not isinstance(app_size, (unicode, str)) or \
+    if not isinstance(app_size, (str, bytes)) or \
             app_size.lower() not in ('small', 'medium', 'large'):
         raise InvalidAppSize('Unrecognized QR application size')
     return True
 
 
 def language_validation(language):
-    if not isinstance(language, (unicode, str)) or \
+    if not isinstance(language, (str, bytes)) or \
             language.lower() not in ('es', 'en', 'br'):
         raise InvalidLanguage('Unrecognized QR footer language')
     return True
